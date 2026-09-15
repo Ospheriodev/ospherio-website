@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Icon } from "./Icon";
 import { LogoMark } from "./Logo";
-import { contactHref, site } from "@/lib/site";
+import { absoluteUrl, contactHref, site } from "@/lib/site";
 import type { Project } from "@/lib/projects";
 import type { Service } from "@/lib/services";
 
@@ -152,7 +152,7 @@ export function Breadcrumbs({ items }: { items: { name: string; href: string }[]
             "@type": "ListItem",
             position: i + 1,
             name: it.name,
-            item: new URL(it.href, site.url).toString(),
+            item: absoluteUrl(it.href),
           })),
         }}
       />

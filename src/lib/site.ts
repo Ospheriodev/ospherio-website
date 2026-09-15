@@ -1,8 +1,10 @@
 // Central site settings. Update the TODO values before going live.
 export const site = {
   name: "Ospherio",
-  // TODO: replace with your real domain (used for canonical URLs, sitemap and structured data).
-  url: "https://www.ospherio.com",
+  // Used for canonical URLs, sitemap and structured data. Must carry the same
+  // subpath as `basePath` in next.config.mjs.
+  // TODO: on a custom domain, drop the subpath here and remove basePath there.
+  url: "https://ospheriodev.github.io/ospherio-website",
   tagline: "Software development & IT services",
   description:
     "Ospherio is a software development and IT services company building web apps, mobile apps, ERP and inventory systems, and AI solutions for businesses worldwide.",
@@ -27,6 +29,9 @@ export const site = {
 
 export const contactHref = site.bookingUrl || `mailto:${site.email}?subject=New%20project%20enquiry`;
 
+// Joins onto site.url including any subpath. Note that `new URL("/about/", base)`
+// would resolve against the origin alone and silently drop "/ospherio-website".
 export function absoluteUrl(path = "/") {
-  return new URL(path, site.url).toString();
+  const base = site.url.endsWith("/") ? site.url : `${site.url}/`;
+  return new URL(path.replace(/^\/+/, ""), base).toString();
 }
