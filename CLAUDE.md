@@ -1,19 +1,16 @@
 # Ospherio website — project context
 
-Context carried over from the Cowork chat where this site was designed and built (Sept 2026).
-
 ## Company
-- Ospherio is a 3-person tech startup offering software development and IT services.
+- Ospherio is a small software development and IT services team.
 - Target market for SEO: **global / remote clients** (US, UK, EU outsourcing).
 - Portfolio projects: BarcodeX (stock/warehouse management), Voice Khata (voice-based ledger app), Warehouse Management System, Bakerify, RAG Reporting System.
-- Note: a UK company, BarcodeX Limited, uses the same name, which may affect UK search visibility for BarcodeX.
 
 ## Brand
 - Logo: `< ı o >` code-bracket icon (white brackets and bar, cyan ring) + wordmark "Ospherıo" with a dotless ı and a cyan final "o", on dark navy.
-- The logo in `src/components/Logo.tsx` and `public/logo.svg` is a hand-redrawn approximation. Replace it with the official SVG when available.
+- The logo in `src/components/Logo.tsx` and `public/logo.svg` is a placeholder; replace both with the official SVG when available.
 - Colours: navy `#0A1230`, deep navy `#070D24`, cards `#0F1840`, text `#EAF0FF`, muted `#B7C2E2`, cyan accent `#22D3EE`.
 - Fonts (self-hosted via @fontsource-variable): Sora (headings), Manrope (body), JetBrains Mono (labels).
-- The client asked for a "catchy, animated" site.
+- The site is meant to feel animated and lively, not static.
 - Design reference (canvas): https://claude.ai/artifact/NtK6NtFrpYi77tq5DnbbLM
 
 ## Tech
@@ -23,7 +20,16 @@ Context carried over from the Cowork chat where this site was designed and built
   - Content stays visible without JS: the hidden state only applies once `html.js-reveal` is set.
   - All motion is disabled for `prefers-reduced-motion`.
 - Build: `npm install && npm run build`. Dev: `npm run dev`.
-- Deploy target: Vercel (import repo) or any static host serving `out/`.
+
+## Deployment
+- GitHub Pages, via `.github/workflows/deploy-pages.yml` on every push to `main`.
+- Pages serves this project repo from a subpath, so `basePath` in `next.config.mjs` and
+  `url` in `src/lib/site.ts` both carry `/ospherio-website` and **must stay in sync**.
+- Dev therefore runs at `http://localhost:3000/ospherio-website/`, not the bare root.
+- Moving to a custom domain means dropping `basePath` and the subpath in `site.url`.
+- `absoluteUrl()` in `site.ts` joins onto the full base on purpose: `new URL("/about/", base)`
+  resolves against the origin alone and would silently drop the subpath from the sitemap,
+  `robots.txt` and every JSON-LD `@id`. Use it instead of bare `new URL(...)`.
 
 ## Where content lives
 - `src/lib/site.ts`: domain, email, booking link, social links, team, tech list.
@@ -37,16 +43,11 @@ Context carried over from the Cowork chat where this site was designed and built
 - Project pages whose text still contains `[bracketed placeholders]` are auto-`noindex` and left out of the sitemap.
 - Keep pages statically rendered and animations CSS-only for Core Web Vitals.
 
-## Still to do
-- [ ] Real domain in `site.ts` (placeholder `https://www.ospherio.com`).
-- [ ] Real contact email (placeholder `hello@ospherio.com`) and booking link.
-- [ ] Social links (LinkedIn, GitHub, Clutch).
-- [ ] Team names, roles, photos.
-- [ ] Descriptions for Warehouse Management System, Bakerify, RAG Reporting System; one more BarcodeX feature.
-- [ ] Official logo SVG, and an Open Graph share image.
-- [ ] Insights/blog section (only once there are real posts).
-- [ ] Contact form (needs a form service or API route, which requires moving off static export or using a third-party endpoint).
-- [ ] After deploy: Google Search Console + submit `/sitemap.xml`.
+## Content placeholders
+Values still to be filled in, all marked in the source and safe to search for:
+- `site.ts`: contact email, booking link, social links, team names and roles.
+- `projects.ts`: descriptions for Warehouse Management System, Bakerify and RAG Reporting System.
+- Assets: official logo SVG and an Open Graph share image.
 
 ## Working style
 - Don't invent facts (prices, stats, testimonials, client names). Use visible `[placeholders]` instead.

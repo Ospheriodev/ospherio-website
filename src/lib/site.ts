@@ -1,9 +1,10 @@
 // Central site settings. Update the TODO values before going live.
 export const site = {
   name: "Ospherio",
-  // Used for canonical URLs, sitemap and structured data.
-  // TODO: point this at the real domain once one is attached in Vercel.
-  url: "https://ospherio-website.vercel.app",
+  // Used for canonical URLs, sitemap and structured data. Must carry the same
+  // subpath as `basePath` in next.config.mjs.
+  // TODO: on a custom domain, drop the subpath here and remove basePath there.
+  url: "https://ospheriodev.github.io/ospherio-website",
   tagline: "Software development & IT services",
   description:
     "Ospherio is a software development and IT services company building web apps, mobile apps, ERP and inventory systems, and AI solutions for businesses worldwide.",
