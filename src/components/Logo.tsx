@@ -17,7 +17,7 @@ export function LogoMark({ size = 40, animated = false, className }: MarkProps) 
       <path className={"mk mk-l" + a} d="M34 6L8 45l26 39" stroke="#FFFFFF" strokeWidth="10" />
       <path className={"mk mk-r" + a} d="M86 6l26 39-26 39" stroke="#FFFFFF" strokeWidth="10" />
       <path className={"mk mk-bar" + a} d="M50 30v28" stroke="#FFFFFF" strokeWidth="10" />
-      <circle className={"mk mk-o" + a} cx="70" cy="51" r="8" stroke="#22D3EE" strokeWidth="7" />
+      <circle className={"mk mk-o" + a} cx="70" cy="50" r="9.5" stroke="#22D3EE" strokeWidth="6" />
     </svg>
   );
 }

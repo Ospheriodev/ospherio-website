@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import logoWhite from "../../public/brand/logo-horizontal-white.svg";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { LogoMark, Wordmark } from "./Logo";
 import { Icon } from "./Icon";
 import { contactHref } from "@/lib/site";
 
@@ -32,8 +33,7 @@ export function Header() {
     <header className={"site-header" + (scrolled ? " is-scrolled" : "")}>
       <div className="container header-inner">
         <Link href="/" className="brand" aria-label="Ospherio home">
-          <LogoMark size={38} />
-          <Wordmark />
+          <Image src={logoWhite} alt="Ospherio" width={211} height={34} className="brand-logo" priority />
         </Link>
 
         <nav className={"nav" + (open ? " is-open" : "")} aria-label="Main">

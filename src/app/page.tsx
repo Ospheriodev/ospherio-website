@@ -2,16 +2,11 @@ import Link from "next/link";
 import { LogoMark } from "@/components/Logo";
 import { Icon } from "@/components/Icon";
 import { CtaSection, ProjectCard, SectionHead, ServiceCard } from "@/components/Blocks";
+import { Process } from "@/components/Process";
+import { WhyUs } from "@/components/WhyUs";
 import { contactHref, site } from "@/lib/site";
 import { services } from "@/lib/services";
 import { projects } from "@/lib/projects";
-
-const steps = [
-  { title: "Discover", text: "We learn your business, users and goals, then agree on scope, timeline and cost." },
-  { title: "Design", text: "Wireframes and clickable prototypes you can test before a line of code is written." },
-  { title: "Build", text: "Short sprints with a working demo at the end of each one — you always see progress." },
-  { title: "Launch & support", text: "We deploy, monitor and keep improving the product after it goes live." },
-];
 
 const rotating = ["web apps", "mobile apps", "ERP systems", "AI tools"];
 
@@ -125,44 +120,26 @@ export default function Home() {
       {/* PROCESS */}
       <section className="section" id="process">
         <div className="container">
-          <SectionHead tag="process" title="How we work." />
-          <div className="track" aria-hidden="true">
-            <i />
-          </div>
-          <ol className="grid-4 steps" style={{ listStyle: "none", margin: 0, padding: 0 }}>
-            {steps.map((s, i) => (
-              <li key={s.title} className="step reveal" style={{ ["--d" as string]: `${i * 90}ms` }}>
-                <span className="step-no">0{i + 1}</span>
-                <h3>{s.title}</h3>
-                <p>{s.text}</p>
-              </li>
-            ))}
-          </ol>
+          <SectionHead
+            tag="process"
+            title="How we"
+            shine="work."
+            lead="Four simple steps from idea to launch — and we stay with you after."
+          />
+          <Process />
         </div>
       </section>
 
-      {/* TEAM */}
-      <section className="container">
-        <div className="panel reveal">
-          <div>
-            <span className="tag">&lt;team /&gt;</span>
-            <h2 className="h2">Small team. Direct line to the builders.</h2>
-          </div>
-          <div>
-            <p className="lead">
-              Ospherio is a three-person team. No account managers or hand-offs — the people you talk to are the
-              people writing your code.
-            </p>
-            <ul className="team">
-              {site.team.map((m, i) => (
-                <li key={i}>
-                  <div className="team-photo">[Photo]</div>
-                  <strong>{m.name}</strong>
-                  <span>{m.role}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* WHY OSPHERIO */}
+      <section className="section section-deep" id="why">
+        <div className="container">
+          <SectionHead
+            tag="why-ospherio"
+            title="Your all-in-one"
+            shine="tech partner."
+            lead="Whatever you need built, fixed or improved, it starts and ends with one partner who owns the result."
+          />
+          <WhyUs />
         </div>
       </section>
 

@@ -15,7 +15,7 @@ export default function ServicesPage() {
       <PageHero
         tag="Services"
         title="Everything you need to build and run software."
-        lead="Pick one service or bring us the whole product. Either way, you work with the same small team from start to finish."
+        lead="Pick one service or bring us the whole product. Either way, you work with the same people from first call to launch and beyond."
       />
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container stack-gap">

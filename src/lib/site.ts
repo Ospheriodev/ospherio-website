@@ -8,8 +8,7 @@ export const site = {
   tagline: "Software development & IT services",
   description:
     "Ospherio is a software development and IT services company building web apps, mobile apps, ERP and inventory systems, and AI solutions for businesses worldwide.",
-  // TODO: replace with your real contact email.
-  email: "hello@ospherio.com",
+  email: "contact@ospherio.com",
   // TODO: add a booking link (e.g. Calendly) or leave empty to use email only.
   bookingUrl: "",
   // TODO: fill in real profile URLs; empty entries are hidden.
@@ -18,12 +17,6 @@ export const site = {
     github: "",
     clutch: "",
   },
-  // TODO: replace with the real team.
-  team: [
-    { name: "[Name]", role: "[Role]" },
-    { name: "[Name]", role: "[Role]" },
-    { name: "[Name]", role: "[Role]" },
-  ],
   tech: ["React", "Next.js", "Flutter", "Node.js", "Python", "PostgreSQL", "LLMs & RAG", "AWS"],
 };
 

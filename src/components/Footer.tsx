@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Wordmark } from "./Logo";
+import Image from "next/image";
+import logoWhite from "../../public/brand/logo-horizontal-white.svg";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
 
@@ -14,7 +15,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <Wordmark className="wordmark-lg" />
+          <Image src={logoWhite} alt="Ospherio" width={198} height={32} />
           <p>Software development and IT services for companies worldwide.</p>
           <a href={`mailto:${site.email}`} className="footer-email">{site.email}</a>
         </div>

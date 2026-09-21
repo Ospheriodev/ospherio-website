@@ -1,6 +1,6 @@
 import type { IconName } from "@/lib/services";
 
-const paths: Record<IconName | "arrow" | "check", React.ReactNode> = {
+const paths: Record<IconName | "arrow" | "check" | "chat" | "rocket", React.ReactNode> = {
   web: (
     <>
       <rect x="3" y="4" width="18" height="14" rx="2" />
@@ -31,6 +31,14 @@ const paths: Record<IconName | "arrow" | "check", React.ReactNode> = {
     </>
   ),
   arrow: <path d="M4 12h15M13 6l6 6-6 6" />,
+  chat: <path d="M4 5h16v11H9l-5 4z M8 9h8M8 12h5" />,
+  rocket: (
+    <>
+      <path d="M12 15l-3-3c1.5-4 4.5-7 10-8-1 5.5-4 8.5-8 10z" />
+      <path d="M9 12l-4 1 2-4h4M12 15l-1 4 4-2v-4" />
+      <circle cx="15" cy="9" r="1.2" />
+    </>
+  ),
   check: <path d="M5 12l5 5 9-10" />,
 };
 

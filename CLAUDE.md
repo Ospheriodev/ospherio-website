@@ -1,13 +1,14 @@
 # Ospherio website — project context
 
 ## Company
-- Ospherio is a small software development and IT services team.
+- Ospherio is a software development and IT services company, presented as an all-in-one tech partner.
+- Don't add team, headcount or "small team" content to the site.
 - Target market for SEO: **global / remote clients** (US, UK, EU outsourcing).
 - Portfolio projects: BarcodeX (stock/warehouse management), Voice Khata (voice-based ledger app), Warehouse Management System, Bakerify, RAG Reporting System.
 
 ## Brand
 - Logo: `< ı o >` code-bracket icon (white brackets and bar, cyan ring) + wordmark "Ospherıo" with a dotless ı and a cyan final "o", on dark navy.
-- The logo in `src/components/Logo.tsx` and `public/logo.svg` is a placeholder; replace both with the official SVG when available.
+- Header/footer use `public/brand/logo-horizontal-white.svg` (imported so it respects `basePath`); `src/components/Logo.tsx` is the animated icon. Replace with the official SVGs when available.
 - Colours: navy `#0A1230`, deep navy `#070D24`, cards `#0F1840`, text `#EAF0FF`, muted `#B7C2E2`, cyan accent `#22D3EE`.
 - Fonts (self-hosted via @fontsource-variable): Sora (headings), Manrope (body), JetBrains Mono (labels).
 - The site is meant to feel animated and lively, not static.
@@ -32,7 +33,9 @@
   `robots.txt` and every JSON-LD `@id`. Use it instead of bare `new URL(...)`.
 
 ## Where content lives
-- `src/lib/site.ts`: domain, email, booking link, social links, team, tech list.
+- `src/lib/site.ts`: domain, email, booking link, social links, tech list.
+- `src/lib/process.ts`: the four "How we work" steps (`components/Process.tsx`).
+- `src/components/WhyUs.tsx`: the "all-in-one tech partner" section (home and About).
 - `src/lib/services.ts`: the 8 services (slug, copy, deliverables, stack, FAQs).
 - `src/lib/projects.ts`: the 5 projects.
 - Pages: `/`, `/services/`, `/services/[slug]/`, `/work/`, `/work/[slug]/`, `/about/`, `/contact/`, 404, `sitemap.ts`, `robots.ts`.
@@ -45,7 +48,7 @@
 
 ## Content placeholders
 Values still to be filled in, all marked in the source and safe to search for:
-- `site.ts`: contact email, booking link, social links, team names and roles.
+- `site.ts`: booking link and social links.
 - `projects.ts`: descriptions for Warehouse Management System, Bakerify and RAG Reporting System.
 - Assets: official logo SVG and an Open Graph share image.
 
