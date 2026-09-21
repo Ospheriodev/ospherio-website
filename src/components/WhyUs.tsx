@@ -24,7 +24,12 @@ const reasons: { icon: IconName; title: string; text: string }[] = [
   },
 ];
 
-export function WhyUs() {
+/**
+ * `level` is the heading tag for each card, styled as an h3 either way.
+ * Use "h3" under a SectionHead (home) and "h2" where the section has no
+ * heading of its own (About), so the page never skips a level.
+ */
+export function WhyUs({ level: H = "h3" }: { level?: "h2" | "h3" }) {
   return (
     <div className="why">
       {reasons.map((r, i) => (
@@ -32,7 +37,7 @@ export function WhyUs() {
           <span className="svc-ic">
             <Icon name={r.icon} size={24} />
           </span>
-          <h3 className="h3">{r.title}</h3>
+          <H className="h3">{r.title}</H>
           <p>{r.text}</p>
         </div>
       ))}

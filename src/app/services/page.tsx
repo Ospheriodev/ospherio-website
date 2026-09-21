@@ -22,7 +22,7 @@ export default function ServicesPage() {
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Services", href: "/services/" }]} />
           <div className="grid-4">
             {services.map((s, i) => (
-              <ServiceCard key={s.slug} s={s} i={i} />
+              <ServiceCard key={s.slug} s={s} i={i} level="h2" />
             ))}
           </div>
         </div>

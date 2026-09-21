@@ -24,12 +24,12 @@ export default function WorkPage() {
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Work", href: "/work/" }]} />
           <div className="grid-2">
             {featured.map((p) => (
-              <ProjectCard key={p.slug} p={p} large />
+              <ProjectCard key={p.slug} p={p} large level="h2" />
             ))}
           </div>
           <div className="grid-3">
             {others.map((p) => (
-              <ProjectCard key={p.slug} p={p} />
+              <ProjectCard key={p.slug} p={p} level="h2" />
             ))}
           </div>
         </div>

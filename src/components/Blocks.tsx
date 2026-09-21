@@ -14,6 +14,10 @@ export function JsonLd({ data }: { data: object }) {
   );
 }
 
+/**
+ * Cards take a `level` so listing pages, where the cards sit straight under
+ * the h1 with no SectionHead above them, don't skip a heading level.
+ */
 export function SectionHead({
   tag,
   title,
@@ -38,13 +42,13 @@ export function SectionHead({
   );
 }
 
-export function ServiceCard({ s, i }: { s: Service; i: number }) {
+export function ServiceCard({ s, i, level: H = "h3" }: { s: Service; i: number; level?: "h2" | "h3" }) {
   return (
     <Link href={`/services/${s.slug}/`} className="card svc reveal" style={{ ["--d" as string]: `${i * 70}ms` }}>
       <span className="svc-ic">
         <Icon name={s.icon} size={26} />
       </span>
-      <h3 className="h3">{s.name}</h3>
+      <H className="h3">{s.name}</H>
       <p>{s.short}</p>
       <span className="more">
         Learn more <Icon name="arrow" size={16} />
@@ -82,12 +86,12 @@ export function ProjectVisual({ visual, small = false }: { visual: Project["visu
   );
 }
 
-export function ProjectCard({ p, large }: { p: Project; large?: boolean }) {
+export function ProjectCard({ p, large, level: H = "h3" }: { p: Project; large?: boolean; level?: "h2" | "h3" }) {
   return (
     <Link href={`/work/${p.slug}/`} className={"card proj reveal" + (large ? " proj-lg" : "")}>
       {large && <ProjectVisual visual={p.visual} />}
       <span className="kicker">{p.category}</span>
-      <h3 className={large ? "h3 h3-lg" : "h3"}>{p.name}</h3>
+      <H className={large ? "h3 h3-lg" : "h3"}>{p.name}</H>
       <p>{p.summary}</p>
       <span className="more">
         View project <Icon name="arrow" size={16} />

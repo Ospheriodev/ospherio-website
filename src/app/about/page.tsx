@@ -21,7 +21,7 @@ export default function AboutPage() {
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container stack-gap">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "About", href: "/about/" }]} />
-          <WhyUs />
+          <WhyUs level="h2" />
         </div>
       </section>
       <section className="section section-deep">
