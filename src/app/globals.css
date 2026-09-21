@@ -212,7 +212,7 @@ img, svg { max-width: 100%; }
 .mk-l.mk-anim { animation: slideL 0.9s var(--ease) 0.2s both; }
 .mk-r.mk-anim { animation: slideR 0.9s var(--ease) 0.2s both; }
 .mk-bar.mk-anim { animation: grow 0.6s var(--ease) 0.9s both; }
-.mk-o.mk-anim { animation: pop 0.6s ease-out 1.3s both, pulseScale 2.4s ease-in-out 2s infinite; }
+.mk-o.mk-anim { animation: drop 0.75s cubic-bezier(0.45, 0, 0.6, 1) 1.35s both, pulseScale 2.4s ease-in-out 2.2s infinite; }
 
 /* ============ Marquee ============ */
 .marquee { border-block: 1px solid var(--line-soft); background: var(--bg-deep); overflow: hidden; padding-block: 22px; }
@@ -379,7 +379,9 @@ a.card:hover .more, a.card:focus-visible .more { opacity: 1; transform: none; }
 @keyframes slideL { from { opacity: 0; transform: translateX(-70px); } to { opacity: 1; transform: none; } }
 @keyframes slideR { from { opacity: 0; transform: translateX(70px); } to { opacity: 1; transform: none; } }
 @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-@keyframes pop { 0% { transform: scale(0); } 70% { transform: scale(1.25); } 100% { transform: scale(1); } }
+/* The ring starts at cy=50 r=9.5 in a 0 0 120 90 viewBox, so -62 user units
+   puts it clear above the top edge; the svg viewport clips it until it falls in. */
+@keyframes drop { from { transform: translateY(-62px); } to { transform: translateY(0); } }
 @keyframes pulseScale { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes marquee { to { transform: translateX(-50%); } }
