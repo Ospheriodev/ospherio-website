@@ -5,7 +5,7 @@ import { Breadcrumbs, CtaSection, JsonLd, PageHero, ProjectCard } from "@/compon
 import { Icon } from "@/components/Icon";
 import { getService, services } from "@/lib/services";
 import { projects } from "@/lib/projects";
-import { absoluteUrl, contactHref, site } from "@/lib/site";
+import { absoluteUrl, contactHref, ogImage, site } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: s.metaTitle,
     description: s.metaDescription,
     alternates: { canonical: path },
-    openGraph: { title: `${s.metaTitle} | Ospherio`, description: s.metaDescription, url: path },
+    openGraph: { title: `${s.metaTitle} | Ospherio`, description: s.metaDescription, url: path , images: [ogImage] },
   };
 }
 

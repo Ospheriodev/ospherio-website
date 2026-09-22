@@ -262,6 +262,25 @@ a.card:hover .more, a.card:focus-visible .more { opacity: 1; transform: none; }
 .pv-voice span.hi { background: #fff; }
 .pv-mark { background: radial-gradient(circle at 50% 50%, #16225a, var(--bg-deep)); }
 
+/* ReportingGPT: a question, an answer being written, the figures behind it. */
+.pv-report { flex-direction: column; align-items: stretch; justify-content: center; gap: 14px; padding: clamp(18px, 4vw, 30px); background: linear-gradient(155deg, #16225a, var(--bg-deep)); }
+.pv-report .q { align-self: flex-end; padding: 7px 13px; border-radius: 12px 12px 3px 12px; background: var(--chip); border: 1px solid var(--line); font-family: var(--mono); font-size: 11.5px; color: var(--text-2); }
+.pv-report .rows { display: flex; flex-direction: column; gap: 7px; }
+.pv-report .rows i { height: 7px; border-radius: 4px; background: var(--line-strong); }
+.pv-report .rows i.hi { background: var(--cyan); box-shadow: 0 0 14px rgba(34, 211, 238, 0.55); }
+.pv-report .bars { display: flex; align-items: flex-end; gap: 7px; height: 52px; margin-top: 2px; }
+.pv-report .bars b { flex: 1; border-radius: 3px 3px 0 0; transform-origin: bottom; background: linear-gradient(180deg, var(--cyan), var(--cyan-deep)); animation: eq 2s ease-in-out infinite; }
+.pv-sm.pv-report .bars { height: 30px; }
+
+/* Bakerify: a storefront with one item in the basket. */
+.pv-shop { flex-direction: column; align-items: stretch; justify-content: center; gap: 14px; padding: clamp(18px, 4vw, 30px); background: linear-gradient(155deg, #1d2c73, var(--bg-deep)); }
+.pv-shop .bar { display: flex; align-items: center; gap: 7px; }
+.pv-shop .bar > i { width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); }
+.pv-shop .cart { margin-left: auto; min-width: 22px; height: 22px; padding: 0 7px; border-radius: 999px; background: var(--cyan); color: var(--bg); font-family: var(--mono); font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; animation: ring 2.4s ease-out infinite; }
+.pv-shop .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+.pv-shop .tiles i { aspect-ratio: 1; border-radius: 10px; background: var(--chip); border: 1px solid var(--line); }
+.pv-shop .tiles i.hi { background: linear-gradient(140deg, var(--cyan), var(--cyan-deep)); border-color: transparent; }
+
 /* Process timeline */
 .process { position: relative; --node: 64px; max-width: 1180px; margin-inline: auto; }
 .process-line { position: absolute; left: calc(100% / var(--steps) / 2); right: calc(100% / var(--steps) / 2); top: calc(var(--node) / 2 - 1px); height: 2px; background: var(--line); }
@@ -315,6 +334,38 @@ a.card:hover .more, a.card:focus-visible .more { opacity: 1; transform: none; }
 .why-item:hover .svc-ic { background: var(--cyan); color: var(--bg); transform: rotate(-6deg) scale(1.05); }
 @media (max-width: 1100px) { .why { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .why { grid-template-columns: 1fr; } }
+
+/* Contact form */
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field > span { font-size: 14px; font-weight: 600; color: var(--text-2); }
+.field > span i { font-style: normal; color: var(--text-3); font-weight: 500; }
+.field input, .field textarea {
+  width: 100%; padding: 13px 15px; border-radius: 12px; font: inherit; font-size: 15.5px;
+  color: var(--text); background: var(--bg-deep); border: 1px solid var(--line);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.field textarea { resize: vertical; min-height: 120px; }
+.field input::placeholder, .field textarea::placeholder { color: var(--text-3); }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.18); }
+.field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
+form.contact-card button[type="submit"] { align-self: flex-start; }
+form.contact-card button[disabled] { opacity: 0.6; cursor: progress; }
+.form-note { font-size: 14px; color: var(--text-3); }
+.form-error { font-size: 14.5px; color: #fca5a5; }
+
+/* Compact card variants: .pv-sm is 150px, well under what these motifs need at
+   full size, so they are thinned rather than clipped. */
+.pv-sm.pv-report, .pv-sm.pv-shop { padding: 16px; gap: 9px; }
+.pv-sm.pv-report .q { font-size: 10.5px; padding: 5px 10px; }
+.pv-sm.pv-report .rows { gap: 6px; }
+.pv-sm.pv-report .rows i { height: 6px; }
+.pv-sm.pv-report .bars { height: 26px; gap: 5px; }
+.pv-sm.pv-shop .bar > i { width: 7px; height: 7px; }
+.pv-sm.pv-shop .cart { min-width: 19px; height: 19px; font-size: 11px; }
+.pv-sm.pv-shop .tiles { flex: 1; min-height: 0; gap: 8px; }
+.pv-sm.pv-shop .tiles i { aspect-ratio: auto; height: 100%; }
+.pv-sm.pv-shop .tiles i:nth-child(n + 4) { display: none; }
 
 /* CTA */
 .cta { position: relative; padding-block: clamp(90px, 12vw, 150px); overflow: hidden; }

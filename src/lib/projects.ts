@@ -1,4 +1,4 @@
-export type Visual = "barcode" | "voice" | "none";
+export type Visual = "barcode" | "voice" | "report" | "shop" | "none";
 
 export type Project = {
   slug: string;
@@ -34,7 +34,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    slug: "voiceledger",
+    slug: "voice-ledger",
     name: "VoiceLedger",
     category: "Mobile · Voice AI · Fintech",
     summary:
@@ -53,13 +53,13 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    slug: "reportinggpt",
+    slug: "reporting-gpt",
     name: "ReportingGPT",
     category: "AI · Analytics",
     summary:
       "Ask questions of your own business data in plain language and get a report back, grounded in the documents it drew from.",
     metaDescription:
-      "ReportingGPT is a RAG reporting system by Ospherio: ask questions of your business documents and data in plain language and get reports grounded in the source material.",
+      "ReportingGPT is a RAG reporting system by Ospherio: ask your business documents and data questions in plain language and get reports grounded in the sources.",
     overview:
       "ReportingGPT sits on top of a company's own documents and data. Retrieval-augmented generation pulls the material that actually answers a question asked in plain English, so the reply is grounded in the business's own records rather than guessed at. The result reads as a report, and points back at the sources behind it.",
     features: [
@@ -68,7 +68,7 @@ export const projects: Project[] = [
       "Answers come back as readable reports, traceable to their sources",
     ],
     services: ["ai-automation"],
-    visual: "none",
+    visual: "report",
     featured: false,
   },
   {
@@ -87,7 +87,7 @@ export const projects: Project[] = [
       "Admin area for managing products and incoming orders",
     ],
     services: ["web-app-development", "ui-ux-design"],
-    visual: "none",
+    visual: "shop",
     featured: false,
   },
 ];

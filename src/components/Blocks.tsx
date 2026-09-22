@@ -79,6 +79,43 @@ export function ProjectVisual({ visual, small = false }: { visual: Project["visu
       </div>
     );
   }
+  if (visual === "report") {
+    // A question, an answer being written, and the figures it produced.
+    const bars = [44, 70, 34, 86, 58];
+    return (
+      <div className={"pv pv-report" + (small ? " pv-sm" : "")} aria-hidden="true">
+        <span className="q">ask your data</span>
+        <span className="rows">
+          {[100, 86, 94].map((w, i) => (
+            <i key={i} className={i === 1 ? "hi" : undefined} style={{ width: `${w}%` }} />
+          ))}
+        </span>
+        <span className="bars">
+          {bars.map((h, i) => (
+            <b key={i} style={{ height: `${h}%`, animationDelay: `${i * 0.18}s` }} />
+          ))}
+        </span>
+      </div>
+    );
+  }
+  if (visual === "shop") {
+    // A storefront: a row of products with one in the basket.
+    return (
+      <div className={"pv pv-shop" + (small ? " pv-sm" : "")} aria-hidden="true">
+        <span className="bar">
+          <i />
+          <i />
+          <i />
+          <b className="cart">1</b>
+        </span>
+        <span className="tiles">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <i key={i} className={i === 1 ? "hi" : undefined} />
+          ))}
+        </span>
+      </div>
+    );
+  }
   return (
     <div className={"pv pv-mark" + (small ? " pv-sm" : "")} aria-hidden="true">
       <LogoMark size={small ? 64 : 90} />
@@ -89,7 +126,7 @@ export function ProjectVisual({ visual, small = false }: { visual: Project["visu
 export function ProjectCard({ p, large, level: H = "h3" }: { p: Project; large?: boolean; level?: "h2" | "h3" }) {
   return (
     <Link href={`/work/${p.slug}/`} className={"card proj reveal" + (large ? " proj-lg" : "")}>
-      {large && <ProjectVisual visual={p.visual} />}
+      <ProjectVisual visual={p.visual} small={!large} />
       <span className="kicker">{p.category}</span>
       <H className={large ? "h3 h3-lg" : "h3"}>{p.name}</H>
       <p>{p.summary}</p>

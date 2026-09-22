@@ -7,7 +7,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { RevealObserver } from "@/components/Reveal";
 import { JsonLd } from "@/components/Blocks";
-import { site } from "@/lib/site";
+import { ogImage, site } from "@/lib/site";
 import { services } from "@/lib/services";
 
 export const metadata: Metadata = {
@@ -36,11 +36,13 @@ export const metadata: Metadata = {
     title: "Ospherio — Software Development & IT Services",
     description: site.description,
     locale: "en_US",
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ospherio — Software Development & IT Services",
     description: site.description,
+    images: [ogImage.url],
   },
   robots: { index: true, follow: true },
 };

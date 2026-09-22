@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Breadcrumbs, PageHero } from "@/components/Blocks";
 import { Icon } from "@/components/Icon";
+import { ContactForm } from "@/components/ContactForm";
 import { contactHref, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -28,16 +29,22 @@ export default function ContactPage() {
         <div className="container stack-gap">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Contact", href: "/contact/" }]} />
           <div className="grid-2">
-            <div className="card contact-card reveal">
-              <span className="kicker">Email</span>
-              <a href={`mailto:${site.email}?subject=New%20project%20enquiry`} className="big">
-                {site.email}
-              </a>
-              <p>The quickest way to reach the whole team.</p>
-              <a href={contactHref} className="btn btn-primary pulse" style={{ alignSelf: "flex-start" }}>
-                Book a free consultation <Icon name="arrow" size={16} />
-              </a>
-            </div>
+            {/* The form only exists once a form key is configured; until then the
+                email card is the contact route. */}
+            {site.formAccessKey ? (
+              <ContactForm />
+            ) : (
+              <div className="card contact-card reveal">
+                <span className="kicker">Email</span>
+                <a href={`mailto:${site.email}?subject=New%20project%20enquiry`} className="big">
+                  {site.email}
+                </a>
+                <p>The quickest way to reach the whole team.</p>
+                <a href={contactHref} className="btn btn-primary pulse" style={{ alignSelf: "flex-start" }}>
+                  Book a free consultation <Icon name="arrow" size={16} />
+                </a>
+              </div>
+            )}
             <div className="card reveal" style={{ ["--d" as string]: "90ms" }}>
               <span className="kicker">Helpful to include</span>
               <ul className="list-check">

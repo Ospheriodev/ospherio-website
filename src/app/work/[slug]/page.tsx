@@ -5,7 +5,7 @@ import { Breadcrumbs, CtaSection, JsonLd, ProjectVisual } from "@/components/Blo
 import { Icon } from "@/components/Icon";
 import { getProject, projects } from "@/lib/projects";
 import { getService } from "@/lib/services";
-import { absoluteUrl, site } from "@/lib/site";
+import { absoluteUrl, ogImage, site } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${p.name} — ${p.category.split(" · ")[0]} Project`,
     description: p.metaDescription,
     alternates: { canonical: path },
-    openGraph: { title: `${p.name} | Ospherio`, description: p.metaDescription, url: path },
+    openGraph: { title: `${p.name} | Ospherio`, description: p.metaDescription, url: path , images: [ogImage] },
     // Keep unfinished case studies out of search results until their details are filled in.
     robots: hasPlaceholder(p.overview + p.summary) ? { index: false, follow: true } : undefined,
   };
