@@ -10,7 +10,14 @@ export type Project = {
   features: string[];
   services: string[]; // service slugs
   visual: Visual;
-  featured: boolean;
+  /** Optional demo clip, served from public/. Needs a poster: without one the
+   *  player is a black box until it loads. */
+  video?: string;
+  videoPoster?: string;
+  /** ISO 8601 duration and the date the clip went live on this site — both
+   *  required by schema.org VideoObject for video results. */
+  videoDuration?: string;
+  videoPublished?: string;
 };
 
 export const projects: Project[] = [
@@ -31,7 +38,6 @@ export const projects: Project[] = [
     ],
     services: ["erp-inventory-software", "web-app-development", "ai-automation", "ui-ux-design"],
     visual: "barcode",
-    featured: true,
   },
   {
     slug: "voice-ledger",
@@ -50,7 +56,6 @@ export const projects: Project[] = [
     ],
     services: ["mobile-app-development", "ai-automation"],
     visual: "voice",
-    featured: true,
   },
   {
     slug: "reporting-gpt",
@@ -69,7 +74,10 @@ export const projects: Project[] = [
     ],
     services: ["ai-automation"],
     visual: "report",
-    featured: false,
+    video: "/media/reporting-gpt-demo.mp4",
+    videoPoster: "/media/reporting-gpt-cover.jpg",
+    videoDuration: "PT38S",
+    videoPublished: "2026-09-22",
   },
   {
     slug: "bakerify",
@@ -88,7 +96,6 @@ export const projects: Project[] = [
     ],
     services: ["web-app-development", "ui-ux-design"],
     visual: "shop",
-    featured: false,
   },
 ];
 

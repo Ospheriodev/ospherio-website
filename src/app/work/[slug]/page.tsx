@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Breadcrumbs, CtaSection, JsonLd, ProjectVisual } from "@/components/Blocks";
+import { Breadcrumbs, CtaSection, JsonLd, ProjectMedia } from "@/components/Blocks";
 import { Icon } from "@/components/Icon";
 import { getProject, projects } from "@/lib/projects";
 import { getService } from "@/lib/services";
@@ -57,8 +57,8 @@ export default async function ProjectPage({ params }: Props) {
               { name: p.name, href: `/work/${p.slug}/` },
             ]}
           />
-          <div className="reveal">
-            <ProjectVisual visual={p.visual} />
+          <div className="reveal detail-media">
+            <ProjectMedia p={p} />
           </div>
 
           <div className="detail-grid">
@@ -110,6 +110,21 @@ export default async function ProjectPage({ params }: Props) {
           creator: { "@type": "Organization", "@id": `${site.url}/#organization`, name: site.name },
         }}
       />
+      {p.video && p.videoPoster && p.videoDuration && p.videoPublished && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            name: `${p.name} — product demo`,
+            description: p.metaDescription,
+            thumbnailUrl: absoluteUrl(p.videoPoster),
+            contentUrl: absoluteUrl(p.video),
+            uploadDate: p.videoPublished,
+            duration: p.videoDuration,
+            publisher: { "@type": "Organization", "@id": `${site.url}/#organization`, name: site.name },
+          }}
+        />
+      )}
     </>
   );
 }

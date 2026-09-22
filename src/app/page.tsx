@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { LogoMark } from "@/components/Logo";
 import { Icon } from "@/components/Icon";
-import { CtaSection, ProjectCard, SectionHead, ServiceCard } from "@/components/Blocks";
+import { CtaSection, SectionHead, ServiceCard } from "@/components/Blocks";
+import { Showcase } from "@/components/Showcase";
 import { Process } from "@/components/Process";
 import { WhyUs } from "@/components/WhyUs";
 import { contactHref, site } from "@/lib/site";
@@ -11,9 +12,6 @@ import { projects } from "@/lib/projects";
 const rotating = ["web apps", "mobile apps", "ERP systems", "AI tools"];
 
 export default function Home() {
-  const featured = projects.filter((p) => p.featured);
-  const others = projects.filter((p) => !p.featured);
-
   return (
     <>
       {/* HERO */}
@@ -103,17 +101,13 @@ export default function Home() {
       {/* WORK */}
       <section className="section section-deep" id="work">
         <div className="container">
-          <SectionHead tag="work" title="Products we're building." />
-          <div className="grid-2">
-            {featured.map((p) => (
-              <ProjectCard key={p.slug} p={p} large />
-            ))}
-          </div>
-          <div className="grid-3" style={{ marginTop: 22 }}>
-            {others.map((p) => (
-              <ProjectCard key={p.slug} p={p} />
-            ))}
-          </div>
+          <SectionHead
+            tag="work"
+            title="Products we're"
+            shine="building."
+            lead="Our own software, in the open — what each one does and who it is for."
+          />
+          <Showcase items={projects} />
         </div>
       </section>
 

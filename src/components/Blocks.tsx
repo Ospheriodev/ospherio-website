@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Icon } from "./Icon";
 import { LogoMark } from "./Logo";
-import { absoluteUrl, contactHref, site } from "@/lib/site";
+import { absoluteUrl, contactHref, pathTo, site } from "@/lib/site";
 import type { Project } from "@/lib/projects";
 import type { Service } from "@/lib/services";
 
@@ -120,6 +120,27 @@ export function ProjectVisual({ visual, small = false }: { visual: Project["visu
     <div className={"pv pv-mark" + (small ? " pv-sm" : "")} aria-hidden="true">
       <LogoMark size={small ? 64 : 90} />
     </div>
+  );
+}
+
+/**
+ * A project's media slot. Renders the demo clip when one exists, otherwise the
+ * CSS motif. preload="none" keeps the clip off the critical path — it is only
+ * fetched when someone presses play.
+ */
+export function ProjectMedia({ p }: { p: Project }) {
+  if (!p.video) return <ProjectVisual visual={p.visual} />;
+  return (
+    <video
+      className="sc-video"
+      controls
+      preload="none"
+      playsInline
+      poster={p.videoPoster ? pathTo(p.videoPoster) : undefined}
+    >
+      <source src={pathTo(p.video)} type="video/mp4" />
+      Your browser cannot play this video.
+    </video>
   );
 }
 

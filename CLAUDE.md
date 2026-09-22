@@ -16,7 +16,9 @@
 
 ## Tech
 - Next.js 16 App Router + TypeScript, static export (`output: "export"`, `trailingSlash: true`) → `out/`.
-- No backend. Contact uses email and an optional booking link (no form yet).
+- No backend. Contact is email, an optional booking link, and an optional contact form
+  posting to Web3Forms — the form only renders once `site.formAccessKey` is set, and
+  `contactHref` points CTAs at `/contact/` instead of `mailto:` once it is.
 - Animations are CSS only (`src/app/globals.css`), plus one IntersectionObserver (`src/components/Reveal.tsx`) for scroll reveals.
   - Content stays visible without JS: the hidden state only applies once `html.js-reveal` is set.
   - All motion is disabled for `prefers-reduced-motion`.
@@ -37,7 +39,12 @@
 - `src/lib/process.ts`: the four "How we work" steps (`components/Process.tsx`).
 - `src/components/WhyUs.tsx`: the "all-in-one tech partner" section (home and About).
 - `src/lib/services.ts`: the 8 services (slug, copy, deliverables, stack, FAQs).
-- `src/lib/projects.ts`: the 4 projects.
+- `src/lib/projects.ts`: the 4 projects. `components/Showcase.tsx` renders them as
+  alternating rows on the home page and `/work/`; `ProjectMedia` in `Blocks.tsx` shows a
+  project's demo clip when it has one, otherwise the CSS motif from `ProjectVisual`.
+- `public/media/`: demo clips and their posters. A clip needs `videoPoster`, plus
+  `videoDuration`/`videoPublished` for the VideoObject JSON-LD; it is `preload="none"`
+  so it never costs a page load.
 - Renamed projects keep their old URL alive via a `noindex` stub under
   `src/app/work/<old-slug>/` using `components/RenamedProject.tsx`, because a
   static export cannot return a 301. Delete a stub once its URL goes quiet.
@@ -45,14 +52,17 @@
 
 ## SEO rules (keep these)
 - Every page: one H1, unique title + meta description, canonical URL.
-- JSON-LD: Organization + WebSite (layout), Service + FAQPage (service pages), BreadcrumbList, CreativeWork (projects).
+- JSON-LD: Organization + WebSite (layout), Service + FAQPage (service pages), BreadcrumbList,
+  CreativeWork (projects), VideoObject (projects with a demo clip).
+- A page that declares its own `openGraph` REPLACES the root one rather than merging, so every
+  such page must spread in `ogImage` from `site.ts` or it ships with no share image.
 - Project pages whose text still contains `[bracketed placeholders]` are auto-`noindex` and left out of the sitemap.
 - Keep pages statically rendered and animations CSS-only for Core Web Vitals.
 
 ## Content placeholders
 Values still to be filled in, all marked in the source and safe to search for:
-- `site.ts`: booking link and social links.
-- Assets: official logo SVG and an Open Graph share image.
+- `site.ts`: booking link, social links, and `formAccessKey` for the contact form.
+- Assets: official logo SVG (`public/og.png` is generated from the current brand).
 
 ## Working style
 - Don't invent facts (prices, stats, testimonials, client names). Use visible `[placeholders]` instead.
