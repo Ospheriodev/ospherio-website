@@ -13,24 +13,23 @@ export type Project = {
   featured: boolean;
 };
 
-// TODO: replace every [bracketed] placeholder with real project details.
 export const projects: Project[] = [
   {
-    slug: "barcodex",
-    name: "BarcodeX",
-    category: "Inventory · ERP",
+    slug: "goodshaul",
+    name: "Goodshaul",
+    category: "AI · Warehouse · ERP",
     summary:
-      "Stock and warehouse management built to be easy to use — scan, track and control inventory without ERP complexity.",
+      "A complete AI warehouse solution — scan, track and control stock across locations, with the grip of a full ERP and none of its weight.",
     metaDescription:
-      "BarcodeX is an easy-to-use stock and warehouse management system built by Ospherio, with barcode scanning and inventory control.",
+      "Goodshaul is a complete AI warehouse solution by Ospherio: barcode scanning, live stock and location tracking, and AI-assisted reporting on stock movement.",
     overview:
-      "BarcodeX is a stock and warehouse management product designed to give businesses the control of a full ERP without its complexity.",
+      "Goodshaul runs a warehouse end to end. Barcode scanning covers the day-to-day movements — goods in, goods out, transfers between locations — so stock levels stay accurate without anyone keeping a parallel spreadsheet. On top of that history, AI turns raw movement data into reporting the team can act on. It is built for businesses that need the control of a full ERP without the cost and complexity of rolling one out.",
     features: [
       "Barcode scanning for stock in, stock out and transfers",
-      "Warehouse and stock-level tracking",
-      "[Add key feature]",
+      "Live stock and location tracking across warehouses",
+      "AI-assisted reporting over your stock movement history",
     ],
-    services: ["erp-inventory-software", "web-app-development", "ui-ux-design"],
+    services: ["erp-inventory-software", "web-app-development", "ai-automation", "ui-ux-design"],
     visual: "barcode",
     featured: true,
   },
@@ -54,38 +53,40 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    slug: "warehouse-management-system",
-    name: "Warehouse Management System",
-    category: "Logistics · Web",
-    summary: "[One-line description: what it manages and for whom]",
-    metaDescription: "Warehouse Management System project by Ospherio. [Add a one-sentence description]",
-    overview: "[Project overview]",
-    features: ["[Key feature]", "[Key feature]"],
-    services: ["erp-inventory-software", "web-app-development"],
+    slug: "reportinggpt",
+    name: "ReportingGPT",
+    category: "AI · Analytics",
+    summary:
+      "Ask questions of your own business data in plain language and get a report back, grounded in the documents it drew from.",
+    metaDescription:
+      "ReportingGPT is a RAG reporting system by Ospherio: ask questions of your business documents and data in plain language and get reports grounded in the source material.",
+    overview:
+      "ReportingGPT sits on top of a company's own documents and data. Retrieval-augmented generation pulls the material that actually answers a question asked in plain English, so the reply is grounded in the business's own records rather than guessed at. The result reads as a report, and points back at the sources behind it.",
+    features: [
+      "Ask questions of your own documents and data in plain language",
+      "Retrieval-augmented answers grounded in the source material",
+      "Answers come back as readable reports, traceable to their sources",
+    ],
+    services: ["ai-automation"],
     visual: "none",
     featured: false,
   },
   {
     slug: "bakerify",
     name: "Bakerify",
-    category: "[Category]",
-    summary: "[One-line description of Bakerify]",
-    metaDescription: "Bakerify project by Ospherio. [Add a one-sentence description]",
-    overview: "[Project overview]",
-    features: ["[Key feature]", "[Key feature]"],
-    services: ["web-app-development"],
-    visual: "none",
-    featured: false,
-  },
-  {
-    slug: "rag-reporting-system",
-    name: "RAG Reporting System",
-    category: "AI · Analytics",
-    summary: "[One-line description, e.g. ask questions of your business data and get reports in plain language]",
-    metaDescription: "RAG Reporting System project by Ospherio. [Add a one-sentence description]",
-    overview: "[Project overview]",
-    features: ["[Key feature]", "[Key feature]"],
-    services: ["ai-automation"],
+    category: "E-commerce · Web",
+    summary:
+      "An online storefront for a bakery — customers browse and order, the owner runs products and orders from one place.",
+    metaDescription:
+      "Bakerify is a bakery e-commerce website built by Ospherio, with an online product catalogue, ordering and checkout, and an admin area for products and orders.",
+    overview:
+      "Bakerify puts a bakery's counter online. Customers browse what is available and place an order; behind the storefront, the owner keeps the product range current and works through incoming orders in the same place, instead of tracking them across messages and spreadsheets.",
+    features: [
+      "Product catalogue customers browse and order from",
+      "Cart and checkout built for repeat orders",
+      "Admin area for managing products and incoming orders",
+    ],
+    services: ["web-app-development", "ui-ux-design"],
     visual: "none",
     featured: false,
   },

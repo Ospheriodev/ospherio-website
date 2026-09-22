@@ -4,7 +4,7 @@
 - Ospherio is a software development and IT services company, presented as an all-in-one tech partner.
 - Don't add team, headcount or "small team" content to the site.
 - Target market for SEO: **global / remote clients** (US, UK, EU outsourcing).
-- Portfolio projects: BarcodeX (stock/warehouse management), Voice Khata (voice-based ledger app), Warehouse Management System, Bakerify, RAG Reporting System.
+- Portfolio projects: Goodshaul (AI warehouse solution), Voice Khata (voice-based ledger app), ReportingGPT (RAG reporting), Bakerify (bakery e-commerce).
 
 ## Brand
 - Logo: `< ı o >` code-bracket icon (white brackets and bar, cyan ring) + wordmark "Ospherıo" with a dotless ı and a cyan final "o", on dark navy.
@@ -37,7 +37,7 @@
 - `src/lib/process.ts`: the four "How we work" steps (`components/Process.tsx`).
 - `src/components/WhyUs.tsx`: the "all-in-one tech partner" section (home and About).
 - `src/lib/services.ts`: the 8 services (slug, copy, deliverables, stack, FAQs).
-- `src/lib/projects.ts`: the 5 projects.
+- `src/lib/projects.ts`: the 4 projects.
 - Pages: `/`, `/services/`, `/services/[slug]/`, `/work/`, `/work/[slug]/`, `/about/`, `/contact/`, 404, `sitemap.ts`, `robots.ts`.
 
 ## SEO rules (keep these)
@@ -49,7 +49,6 @@
 ## Content placeholders
 Values still to be filled in, all marked in the source and safe to search for:
 - `site.ts`: booking link and social links.
-- `projects.ts`: descriptions for Warehouse Management System, Bakerify and RAG Reporting System.
 - Assets: official logo SVG and an Open Graph share image.
 
 ## Working style

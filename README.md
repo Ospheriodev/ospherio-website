@@ -15,7 +15,6 @@ npm run build      # static site is written to ./out
 Replace the placeholders:
 
 - `src/lib/site.ts`: domain (`url`), contact `email`, `bookingUrl` (e.g. Calendly), social links and the team.
-- `src/lib/projects.ts`: text in `[brackets]` for Warehouse Management System, Bakerify and RAG Reporting System.
   Project pages that still contain `[placeholders]` are set to `noindex` and left out of the sitemap automatically.
 
 ## Deploy
