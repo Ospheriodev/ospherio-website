@@ -1,10 +1,9 @@
 // Central site settings. Update the TODO values before going live.
 export const site = {
   name: "Ospherio",
-  // Used for canonical URLs, sitemap and structured data. Must carry the same
-  // subpath as `basePath` in next.config.mjs.
-  // TODO: on a custom domain, drop the subpath here and remove basePath there.
-  url: "https://ospheriodev.github.io/ospherio-website",
+  // Used for canonical URLs, sitemap and structured data. If this ever moves
+  // back under a subpath, `basePath` in next.config.mjs must match it.
+  url: "https://ospherio.com",
   tagline: "Software development & IT services",
   description:
     "Ospherio is a software development and IT services company building web apps, mobile apps, ERP and inventory systems, and AI solutions for businesses worldwide.",

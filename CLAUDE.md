@@ -25,14 +25,16 @@
 - Build: `npm install && npm run build`. Dev: `npm run dev`.
 
 ## Deployment
-- GitHub Pages, via `.github/workflows/deploy-pages.yml` on every push to `main`.
-- Pages serves this project repo from a subpath, so `basePath` in `next.config.mjs` and
-  `url` in `src/lib/site.ts` both carry `/ospherio-website` and **must stay in sync**.
-- Dev therefore runs at `http://localhost:3000/ospherio-website/`, not the bare root.
-- Moving to a custom domain means dropping `basePath` and the subpath in `site.url`.
-- `absoluteUrl()` in `site.ts` joins onto the full base on purpose: `new URL("/about/", base)`
-  resolves against the origin alone and would silently drop the subpath from the sitemap,
-  `robots.txt` and every JSON-LD `@id`. Use it instead of bare `new URL(...)`.
+- Cloudflare Pages, building from `main`. Build command `npm run build`, output directory `out`,
+  `NODE_VERSION=22`. There is no GitHub Actions workflow — Cloudflare builds on push.
+- Served from the domain root, so there is **no `basePath`**. If the site ever moves back under a
+  subpath, `basePath` in `next.config.mjs` and `url` in `src/lib/site.ts` must match each other.
+- `basePath` and `pathTo()` in `site.ts` derive from `site.url`, so changing that one value moves
+  canonicals, the sitemap, `robots.txt`, every JSON-LD `@id`, the OG image and raw asset hrefs.
+- `absoluteUrl()` joins onto the full base on purpose: `new URL("/about/", base)` resolves against
+  the origin alone and would drop any subpath. Use it instead of bare `new URL(...)`.
+- `public/_redirects` holds real 301s (Cloudflare can do what GitHub Pages could not), including the
+  renamed project slugs. `public/_headers` sets caching and security headers.
 
 ## Where content lives
 - `src/lib/site.ts`: domain, email, booking link, social links, tech list.
@@ -45,9 +47,7 @@
 - `public/media/`: demo clips and their posters. A clip needs `videoPoster`, plus
   `videoDuration`/`videoPublished` for the VideoObject JSON-LD; it is `preload="none"`
   so it never costs a page load.
-- Renamed projects keep their old URL alive via a `noindex` stub under
-  `src/app/work/<old-slug>/` using `components/RenamedProject.tsx`, because a
-  static export cannot return a 301. Delete a stub once its URL goes quiet.
+- Renamed projects keep their old URL alive with a 301 in `public/_redirects`.
 - Pages: `/`, `/services/`, `/services/[slug]/`, `/work/`, `/work/[slug]/`, `/about/`, `/contact/`, 404, `sitemap.ts`, `robots.ts`.
 
 ## SEO rules (keep these)

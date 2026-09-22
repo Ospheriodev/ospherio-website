@@ -1,0 +1,6 @@
+# Cloudflare Pages redirects. Unlike GitHub Pages these are real 301s, so the
+# renamed projects no longer need meta-refresh stub pages.
+/work/barcodex      /work/goodshaul/     301
+/work/barcodex/     /work/goodshaul/     301
+/work/voice-khata   /work/voice-ledger/  301
+/work/voice-khata/  /work/voice-ledger/  301

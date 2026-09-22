@@ -1,9 +1,0 @@
-import { RenamedProject, renamedMetadata, type Rename } from "@/components/RenamedProject";
-
-const RENAME: Rename = { was: "BarcodeX", name: "Goodshaul", to: "/work/goodshaul/" };
-
-export const metadata = renamedMetadata(RENAME);
-
-export default function BarcodeXRenamed() {
-  return <RenamedProject {...RENAME} />;
-}
