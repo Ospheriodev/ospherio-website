@@ -4,7 +4,7 @@
 - Ospherio is a software development and IT services company, presented as an all-in-one tech partner.
 - Don't add team, headcount or "small team" content to the site.
 - Target market for SEO: **global / remote clients** (US, UK, EU outsourcing).
-- Portfolio projects: Goodshaul (AI warehouse solution), Voice Khata (voice-based ledger app), ReportingGPT (RAG reporting), Bakerify (bakery e-commerce).
+- Portfolio projects: Goodshaul (AI warehouse solution), VoiceLedger (voice-based ledger app), ReportingGPT (RAG reporting), Bakerify (bakery e-commerce).
 
 ## Brand
 - Logo: `< ı o >` code-bracket icon (white brackets and bar, cyan ring) + wordmark "Ospherıo" with a dotless ı and a cyan final "o", on dark navy.
@@ -38,6 +38,9 @@
 - `src/components/WhyUs.tsx`: the "all-in-one tech partner" section (home and About).
 - `src/lib/services.ts`: the 8 services (slug, copy, deliverables, stack, FAQs).
 - `src/lib/projects.ts`: the 4 projects.
+- Renamed projects keep their old URL alive via a `noindex` stub under
+  `src/app/work/<old-slug>/` using `components/RenamedProject.tsx`, because a
+  static export cannot return a 301. Delete a stub once its URL goes quiet.
 - Pages: `/`, `/services/`, `/services/[slug]/`, `/work/`, `/work/[slug]/`, `/about/`, `/contact/`, 404, `sitemap.ts`, `robots.ts`.
 
 ## SEO rules (keep these)

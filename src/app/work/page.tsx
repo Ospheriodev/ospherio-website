@@ -5,7 +5,7 @@ import { projects } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "Our Work — Software Projects & Case Studies",
   description:
-    "Software products built by Ospherio, including the Goodshaul AI warehouse solution and the Voice Khata voice-based ledger app.",
+    "Software products built by Ospherio, including the Goodshaul AI warehouse solution and the VoiceLedger voice-based ledger app.",
   alternates: { canonical: "/work/" },
 };
 

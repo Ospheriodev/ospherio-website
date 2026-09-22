@@ -22,6 +22,18 @@ export const site = {
 
 export const contactHref = site.bookingUrl || `mailto:${site.email}?subject=New%20project%20enquiry`;
 
+// The subpath the site is served from, derived from site.url so it cannot drift
+// from `basePath` in next.config.mjs. Empty on a custom domain served at the root.
+export const basePath = new URL(site.url).pathname.replace(/\/$/, "");
+
+// Root-relative href *including* the subpath, for raw HTML that Next does not
+// rewrite the way it rewrites next/link and next/image. Prefer this over
+// absoluteUrl() when the link only has to resolve on whatever host is serving:
+// an absolute URL would send localhost and preview builds to production.
+export function pathTo(path = "/") {
+  return `${basePath}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
 // Joins onto site.url including any subpath. Note that `new URL("/about/", base)`
 // would resolve against the origin alone and silently drop "/ospherio-website".
 export function absoluteUrl(path = "/") {

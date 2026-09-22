@@ -34,15 +34,15 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    slug: "voice-khata",
-    name: "Voice Khata",
+    slug: "voiceledger",
+    name: "VoiceLedger",
     category: "Mobile · Voice AI · Fintech",
     summary:
       "A digital ledger you talk to — spoken transactions are transcribed and recorded as structured entries.",
     metaDescription:
-      "Voice Khata is a voice-based digital ledger app by Ospherio: speak a transaction and it is transcribed and recorded automatically.",
+      "VoiceLedger is a voice-based digital ledger app by Ospherio: speak a transaction and it is transcribed and recorded automatically.",
     overview:
-      "Voice Khata turns a spoken transaction into a structured ledger entry. Entries can be added by voice or by hand, and reviewed, edited or deleted with a tap.",
+      "VoiceLedger turns a spoken transaction into a structured ledger entry. Entries can be added by voice or by hand, and reviewed, edited or deleted with a tap.",
     features: [
       "Add entries by speaking or typing",
       "Speech is transcribed and parsed into structured records",
