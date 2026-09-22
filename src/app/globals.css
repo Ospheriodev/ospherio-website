@@ -212,7 +212,7 @@ img, svg { max-width: 100%; }
 .mk-l.mk-anim { animation: slideL 0.9s var(--ease) 0.2s both; }
 .mk-r.mk-anim { animation: slideR 0.9s var(--ease) 0.2s both; }
 .mk-bar.mk-anim { animation: grow 0.6s var(--ease) 0.9s both; }
-.mk-o.mk-anim { animation: drop 0.75s cubic-bezier(0.45, 0, 0.6, 1) 1.35s both, pulseScale 2.4s ease-in-out 2.2s infinite; }
+.mk-o.mk-anim { animation: dotFall 1.15s linear 1.5s both, pulseScale 2.4s ease-in-out 2.75s infinite; }
 
 /* ============ Marquee ============ */
 .marquee { border-block: 1px solid var(--line-soft); background: var(--bg-deep); overflow: hidden; padding-block: 22px; }
@@ -379,9 +379,25 @@ a.card:hover .more, a.card:focus-visible .more { opacity: 1; transform: none; }
 @keyframes slideL { from { opacity: 0; transform: translateX(-70px); } to { opacity: 1; transform: none; } }
 @keyframes slideR { from { opacity: 0; transform: translateX(70px); } to { opacity: 1; transform: none; } }
 @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-/* The ring starts at cy=50 r=9.5 in a 0 0 120 90 viewBox, so -62 user units
-   puts it clear above the top edge; the svg viewport clips it until it falls in. */
-@keyframes drop { from { transform: translateY(-62px); } to { transform: translateY(0); } }
+/* The ring starts as the i's dot, perched on the bar, then falls off it and
+   lands as the "o". The bar's visual top is y=25 and the ring's resting centre
+   is (70,50), so the dot sits at (50,14) — offset (-20,-36) — scaled to 0.55
+   because a full-size ring would not fit in the 25 units above the bar.
+   The fall is a parabola: x drifts linearly while y accelerates, hence the
+   linear timing function and the hand-plotted steps. */
+@keyframes dotFall {
+  0%   { transform: translate(-20px, -36px) scale(0); }
+  6%   { transform: translate(-20px, -36px) scale(0.66); }
+  10%  { transform: translate(-20px, -36px) scale(0.55); }
+  40%  { transform: translate(-20px, -36px) scale(0.55); }
+  50%  { transform: translate(-16.7px, -35px) scale(0.62); }
+  60%  { transform: translate(-13.3px, -32px) scale(0.70); }
+  70%  { transform: translate(-10px, -27px) scale(0.78); }
+  80%  { transform: translate(-6.7px, -20px) scale(0.85); }
+  88%  { transform: translate(-4px, -13px) scale(0.91); }
+  95%  { transform: translate(-1.7px, -5.8px) scale(0.96); }
+  100% { transform: translate(0, 0) scale(1); }
+}
 @keyframes pulseScale { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes marquee { to { transform: translateX(-50%); } }
