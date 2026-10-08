@@ -10,10 +10,10 @@ export const site = {
   email: "contact@ospherio.com",
   // TODO: add a booking link (e.g. Calendly) or leave empty to use email only.
   bookingUrl: "",
-  // TODO: paste a free Web3Forms access key (web3forms.com — enter the address
-  // above, they email you a key). Until it is set, the contact page shows the
-  // email card instead of the form, and no form is rendered anywhere.
-  formAccessKey: "",
+  // Web3Forms access key: submissions are emailed to the address above. It is a
+  // public identifier by design (it only lets a sender deliver to that inbox).
+  // Clear it and the contact and early-access forms fall back to an email card.
+  formAccessKey: "cd40e51c-363b-4555-a35c-8233e7df289e",
   // TODO: fill in real profile URLs; empty entries are hidden.
   social: {
     linkedin: "",
