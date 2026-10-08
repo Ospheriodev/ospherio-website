@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs, CtaSection, JsonLd, ProjectMedia } from "@/components/Blocks";
 import { Icon } from "@/components/Icon";
-import { getProject, projects } from "@/lib/projects";
+import { getProject, workPages } from "@/lib/projects";
 import { getService } from "@/lib/services";
 import { absoluteUrl, ogImage, site } from "@/lib/site";
 
@@ -12,14 +12,14 @@ type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  return workPages.map((p) => ({ slug: p.slug }));
 }
 
 const hasPlaceholder = (text: string) => /\[[^\]]+\]/.test(text);
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = getProject((await params).slug);
-  if (!p) return {};
+  if (!p || p.href) return {};
   const path = `/work/${p.slug}/`;
   return {
     title: `${p.name} — ${p.category.split(" · ")[0]} Project`,
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectPage({ params }: Props) {
   const p = getProject((await params).slug);
-  if (!p) notFound();
+  if (!p || p.href) notFound();
   const svc = p.services.map(getService).filter((s) => s !== undefined);
 
   return (

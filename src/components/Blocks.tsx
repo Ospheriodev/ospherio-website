@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Icon } from "./Icon";
 import { LogoMark } from "./Logo";
 import { absoluteUrl, contactHref, pathTo, site } from "@/lib/site";
-import type { Project } from "@/lib/projects";
+import { projectHref, type Project } from "@/lib/projects";
 import type { Service } from "@/lib/services";
 
 export function JsonLd({ data }: { data: object }) {
@@ -129,6 +129,9 @@ export function ProjectVisual({ visual, small = false }: { visual: Project["visu
  * fetched when someone presses play.
  */
 export function ProjectMedia({ p }: { p: Project }) {
+  if (p.image) {
+    return <img className="sc-shot" src={pathTo(p.image)} alt={p.imageAlt ?? ""} loading="lazy" decoding="async" />;
+  }
   if (!p.video) return <ProjectVisual visual={p.visual} />;
   return (
     <video
@@ -146,7 +149,7 @@ export function ProjectMedia({ p }: { p: Project }) {
 
 export function ProjectCard({ p, large, level: H = "h3" }: { p: Project; large?: boolean; level?: "h2" | "h3" }) {
   return (
-    <Link href={`/work/${p.slug}/`} className={"card proj reveal" + (large ? " proj-lg" : "")}>
+    <Link href={projectHref(p)} className={"card proj reveal" + (large ? " proj-lg" : "")}>
       <ProjectVisual visual={p.visual} small={!large} />
       <span className="kicker">{p.category}</span>
       <H className={large ? "h3 h3-lg" : "h3"}>{p.name}</H>

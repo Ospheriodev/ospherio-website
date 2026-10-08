@@ -7,9 +7,17 @@ import { Process } from "@/components/Process";
 import { WhyUs } from "@/components/WhyUs";
 import { contactHref, site } from "@/lib/site";
 import { services } from "@/lib/services";
-import { projects } from "@/lib/projects";
+import { workPages } from "@/lib/projects";
+import { ScreenPair, shots } from "@/components/Shots";
+import { goodshaul } from "@/lib/goodshaul";
 
 const rotating = ["web apps", "mobile apps", "ERP systems", "AI tools"];
+
+const spotlight = [
+  "Offline order taking and deliveries on the phone",
+  "Invoices, delivery runs, payments and cheques in one back office",
+  "Credit limits, statements and stock that stay current",
+];
 
 export default function Home() {
   return (
@@ -81,8 +89,43 @@ export default function Home() {
         </div>
       </div>
 
+      {/* PRODUCT SPOTLIGHT */}
+      <section className="section spot" id="goodshaul">
+        <div className="container spot-grid">
+          <div className="spot-copy reveal">
+            <span className="tag">&lt;our-product /&gt;</span>
+            <h2 className="h2">
+              Meet <span className="shine">{goodshaul.name}.</span>
+            </h2>
+            <p className="lead">
+              Our own product for wholesalers and distributors. It follows an order from the rep&apos;s phone to the
+              office, onto the van and into the customer&apos;s account, and it keeps working with no signal.
+            </p>
+            <ul className="list-check">
+              {spotlight.map((t) => (
+                <li key={t}>
+                  <Icon name="check" size={18} /> {t}
+                </li>
+              ))}
+            </ul>
+            <div className="hero-actions">
+              <Link href={goodshaul.path} className="btn btn-primary btn-lg">
+                See {goodshaul.name} <Icon name="arrow" size={18} />
+              </Link>
+              <Link href={`${goodshaul.path}#early-access`} className="btn btn-ghost btn-lg">
+                Join early access
+              </Link>
+            </div>
+          </div>
+          <div className="reveal" style={{ ["--d" as string]: "100ms" }}>
+            <ScreenPair desktop={shots.orderDesktop} phone={shots.orderPhone} />
+            <p className="gh-note">Design preview with sample data.</p>
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES */}
-      <section className="section" id="services">
+      <section className="section section-deep" id="services">
         <div className="container">
           <SectionHead
             tag="services"
@@ -99,20 +142,20 @@ export default function Home() {
       </section>
 
       {/* WORK */}
-      <section className="section section-deep" id="work">
+      <section className="section" id="work">
         <div className="container">
           <SectionHead
             tag="work"
-            title="Products we're"
+            title="More we're"
             shine="building."
-            lead="Our own software, in the open — what each one does and who it is for."
+            lead="Other software from our own bench — what each one does and who it is for."
           />
-          <Showcase items={projects} />
+          <Showcase items={workPages} />
         </div>
       </section>
 
       {/* PROCESS */}
-      <section className="section" id="process">
+      <section className="section section-deep" id="process">
         <div className="container">
           <SectionHead
             tag="process"
@@ -125,7 +168,7 @@ export default function Home() {
       </section>
 
       {/* WHY OSPHERIO */}
-      <section className="section section-deep" id="why">
+      <section className="section" id="why">
         <div className="container">
           <SectionHead
             tag="why-ospherio"

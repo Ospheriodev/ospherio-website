@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/site";
 import { services } from "@/lib/services";
-import { projects } from "@/lib/projects";
+import { workPages } from "@/lib/projects";
+import { goodshaul } from "@/lib/goodshaul";
 
 export const dynamic = "force-static";
 
@@ -11,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   return [
     { url: absoluteUrl("/"), lastModified: now, changeFrequency: "monthly", priority: 1 },
+    { url: absoluteUrl(goodshaul.path), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: absoluteUrl("/services/"), lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     ...services.map((s) => ({
       url: absoluteUrl(`/services/${s.slug}/`),
@@ -19,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     })),
     { url: absoluteUrl("/work/"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    ...projects
+    ...workPages
       .filter((p) => !isDraft(p.overview + p.summary))
       .map((p) => ({
         url: absoluteUrl(`/work/${p.slug}/`),
