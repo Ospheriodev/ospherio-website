@@ -44,8 +44,10 @@
 - `src/components/WhyUs.tsx`: the "all-in-one tech partner" section (home and About).
 - `src/lib/services.ts`: the 8 services (slug, copy, deliverables, stack, FAQs).
 - `src/lib/goodshaul.ts`: all copy for the GoodsHaul product page (`src/app/goodshaul/page.tsx`).
-  Only describe what is built; planned work goes in `comingNext`. No prices, customer names or
-  unpublished figures. `components/Shots.tsx` holds the framed screens (`public/media/goodshaul/`),
+  Keep it short and scannable: one idea per line. Only describe what is built; the AI features
+  (`ai`) and `alsoPlanned` are in development and must stay labelled that way on the page. No prices,
+  customer names or unpublished figures. The 40-second clip (`public/media/goodshaul/goodshaul-demo.mp4`)
+  is a concept preview recorded from the design prototype with sample data, and is captioned as such. `components/Shots.tsx` holds the framed screens (`public/media/goodshaul/`),
   which are design previews with sample data and are captioned as such. `components/EarlyAccess.tsx`
   is the early-access request: an email card until `site.formAccessKey` is set, then a form.
 - `src/lib/projects.ts`: the 4 projects. A project with `href` (GoodsHaul) links to its own page and

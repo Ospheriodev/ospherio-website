@@ -17,6 +17,7 @@ const spotlight = [
   "Offline order taking and deliveries on the phone",
   "Invoices, delivery runs, payments and cheques in one back office",
   "Credit limits, statements and stock that stay current",
+  "AI product capture in development",
 ];
 
 export default function Home() {

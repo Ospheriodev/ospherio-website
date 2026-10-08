@@ -1,138 +1,96 @@
-// Content for the GoodsHaul product page (/goodshaul/). Everything here
-// describes what is built today; planned work lives in `comingNext` only.
-// Don't add prices, customer names or figures that aren't published.
+// Content for the GoodsHaul product page (/goodshaul/). Keep it short: one idea
+// per line. `reasons`, `flow`, `roles` and `included` describe what is built
+// today. `ai` and `alsoPlanned` are in development and are labelled that way on
+// the page. Don't add prices, customer names or figures that aren't published.
 
 export const goodshaul = {
   name: "GoodsHaul",
   path: "/goodshaul/",
-  category: "Order-to-cash for wholesale distribution",
   metaTitle: "GoodsHaul — Order, Delivery and Payment Software for Wholesale Distributors",
   metaDescription:
-    "GoodsHaul is van-sales and distribution software by Ospherio: offline order taking on the phone, delivery runs, invoicing, payments at the drop, credit control and stock, in one system.",
+    "GoodsHaul is van-sales and distribution software by Ospherio: offline order taking, delivery runs, invoicing, payments at the drop, credit control and stock, with AI product capture in development.",
   heroTitle: "Orders, deliveries and cash, from the van to the office.",
-  heroLead:
-    "GoodsHaul runs a wholesale distributor's day in one system. Reps take orders on the phone, the office confirms and invoices, drivers deliver and collect payment, and every balance stays current. The phone keeps working with no signal.",
+  heroLead: "One system for wholesale distributors. It keeps working when the signal doesn't.",
   earlyAccessSubject: "GoodsHaul early access",
+  video: {
+    src: "/media/goodshaul/goodshaul-demo.mp4",
+    poster: "/media/goodshaul/goodshaul-demo-cover.jpg",
+    duration: "PT40S",
+    published: "2026-10-08",
+  },
 };
 
+export const reasons = [
+  { big: "No signal?", title: "No problem.", text: "Orders, deliveries and payments save on the phone and send themselves later." },
+  { big: "Key it in", title: "once.", text: "The rep's order becomes the invoice, the delivery and the balance." },
+  { big: "Who owes", title: "what?", text: "Cash, cheques and credit limits, current the moment the van syncs." },
+];
+
+// In development. Shown under an "In development" badge, never as shipped.
+export const ai = [
+  {
+    key: "snap",
+    verb: "Snap it.",
+    text: "Photograph a product and its box. The details fill themselves in.",
+  },
+  {
+    key: "drop",
+    verb: "Drop it in.",
+    text: "Upload a supplier price list. Your prices line up without retyping.",
+  },
+  {
+    key: "show",
+    verb: "Show it off.",
+    text: "Clean product photos, ready for your catalogue.",
+  },
+] as const;
+
+export const aiPromise = "AI drafts. A person approves. It never posts, prices or pays on its own.";
+
 export const flow = [
-  {
-    who: "Rep or office",
-    title: "Take the order",
-    text: "On the phone at the customer's counter, or keyed in at the office. Customer prices, tax and pack sizes are applied for you.",
-  },
-  {
-    who: "Office",
-    title: "Check and confirm",
-    text: "Orders over a credit limit or short on stock are flagged, so the office decides before anything is loaded.",
-  },
-  {
-    who: "Office",
-    title: "Invoice and plan the run",
-    text: "Invoice confirmed orders, then put them on a delivery run by day, van and driver.",
-  },
-  {
-    who: "Driver",
-    title: "Deliver and collect",
-    text: "The driver works through the stops on the phone, records each delivery and takes cash or a cheque at the drop.",
-  },
-  {
-    who: "Office",
-    title: "Know who owes what",
-    text: "Payments settle the oldest debt first. Balances, ageing and statements are current as soon as the phone syncs.",
-  },
+  { who: "Rep or office", title: "Order" },
+  { who: "Office", title: "Confirm" },
+  { who: "Office", title: "Invoice" },
+  { who: "Driver", title: "Deliver" },
+  { who: "Driver", title: "Get paid" },
 ];
 
 export const roles = [
   {
-    tag: "Phone · Rep",
-    title: "For reps on the road",
-    points: [
-      "Take an order with no signal; it is sent when the phone reconnects",
-      "Today's customers, with balance and credit limit shown before the order is placed",
-      "Customer prices worked out on the phone exactly as the office works them out",
-      "Product photos in the picker, and one tap to repeat the last order",
-    ],
+    tag: "Phone",
+    title: "Reps",
+    points: ["Take orders offline", "See balance and credit limit first", "Repeat the last order in one tap"],
   },
   {
-    tag: "Phone · Driver",
-    title: "For drivers at the drop",
-    points: [
-      "Today's run and its stops, available offline",
-      "Record each stop as delivered or failed",
-      "Take cash or a cheque and share the receipt from the phone",
-      "Undo a mistaken payment; the office still sees what happened",
-      "Cash-up for the run when the van is back",
-    ],
+    tag: "Phone",
+    title: "Drivers",
+    points: ["Today's run, stop by stop", "Take cash or a cheque at the drop", "Share the receipt from the phone"],
   },
   {
-    tag: "Web · Office",
-    title: "For the office",
-    points: [
-      "A dashboard of what is waiting: orders to confirm, over the limit, not yet on a run",
-      "Orders, invoices, credit notes and delivery runs in one place",
-      "Payments, cheque register, who owes what and printable statements",
-      "Products with units and barcodes, price lists and customer prices",
-      "Import products, customers and opening stock from CSV, with a dry run first",
-    ],
+    tag: "Web",
+    title: "The office",
+    points: ["See what needs attention today", "Invoice and plan runs", "Chase what's owed with statements"],
   },
 ];
 
-export const offline = [
-  {
-    title: "Saved on the phone first",
-    text: "Orders, deliveries and payments are stored on the device, then queued. Closing the app or losing power doesn't lose them.",
-  },
-  {
-    title: "Sent once, never twice",
-    text: "Every change carries its own ID, so a retry on a bad connection can't create a duplicate order or payment.",
-  },
-  {
-    title: "Numbers that hold",
-    text: "Each phone has its own number series, so a rep or driver can give an order or receipt number on the spot.",
-  },
-  {
-    title: "The rep's quote is honoured",
-    text: "If a price changed while the phone was offline, the order keeps the price the customer was given and is flagged for the office.",
-  },
+export const included = [
+  "Stock levels",
+  "Price lists",
+  "Customer prices",
+  "Credit limits",
+  "Cheque register",
+  "Credit notes",
+  "Statements",
+  "Delivery runs",
+  "Product photos",
+  "PDF catalogue",
+  "QR product pages",
+  "CSV import",
+  "Any currency and tax",
+  "Roles for every job",
 ];
 
-export const stock = [
-  "On hand, committed and available for every product, in boxes and loose items",
-  "Counts and adjustments with a reason: damaged, lost, found, own use",
-  "A full movement history that can't be edited after the fact",
-  "Short-stock warnings on the order, before the van is loaded",
-];
-
-export const catalogue = [
-  "Product photos, shown in search, order lines and on the phone",
-  "A print-ready PDF catalogue with a cover, brand pages and optional prices",
-  "A QR code per product that opens its public page",
-  "Public pages show only what you approve: no prices, stock or customer details",
-];
-
-export const money = [
-  { title: "Payments", text: "Cash and cheques, recorded in the office or taken on the phone at the drop." },
-  { title: "Allocation", text: "A payment settles the oldest debt first; the office can re-point it." },
-  { title: "Cheque register", text: "Received, banked, cleared or returned. A returned cheque reopens its invoices." },
-  { title: "Credit control", text: "Credit limits that warn on the order, and a stop the office can put on a customer." },
-  { title: "Credit notes", text: "Corrections are new documents, so an invoice the customer holds never changes." },
-  { title: "Statements", text: "Who owes what, ageing by customer and statements ready to print." },
-];
-
-export const setup = [
-  { title: "Your currency and tax", text: "Currency, time zone, tax rates and bill rounding are set per company." },
-  { title: "Your data", text: "CSV imports check every row and report problems before anything is saved." },
-  { title: "Your team", text: "Owner, office, warehouse, rep and driver roles decide what each person sees." },
-];
-
-export const comingNext = [
-  "Guided product capture with the phone camera",
-  "Invoices made and printed at the drop",
-  "Van stock, goods in, and batch and expiry tracking",
-  "AI-assisted product entry: a photo fills the form, a person saves it",
-  "Sales and tax summary reports",
-];
+export const alsoPlanned = ["Invoices printed at the drop", "Van stock", "Batch and expiry", "Sales and tax reports"];
 
 export const faqs = [
   {
@@ -144,20 +102,16 @@ export const faqs = [
     a: "No. Reps and drivers can take orders, record deliveries and take payments offline. The phone sends everything when it reconnects, and nothing is duplicated if a send is retried.",
   },
   {
-    q: "What does it run on?",
-    a: "The back office runs in a web browser. The phone app is built for iPhone and Android.",
+    q: "Is the AI available now?",
+    a: "Not yet. AI product capture is in development. When it arrives it drafts the details and a person approves them before anything is saved.",
   },
   {
     q: "Can we bring our existing products and customers?",
-    a: "Yes. Products, customers and opening stock import from CSV. A dry run reports any problems row by row before anything is saved.",
+    a: "Yes. Products, customers and opening stock import from CSV, and a dry run reports any problems before anything is saved.",
   },
   {
-    q: "Which countries and currencies does it support?",
-    a: "Each company is set up with its own currency, time zone and tax rates, so it isn't tied to one country.",
-  },
-  {
-    q: "What does early access involve?",
-    a: "GoodsHaul is a working product, open to a small number of distributors while we finish the roadmap. Tell us how you take orders and deliver today and we'll arrange a demo.",
+    q: "What does it run on?",
+    a: "The back office runs in a web browser. The phone app is built for iPhone and Android.",
   },
   {
     q: "How much does it cost?",

@@ -3,8 +3,8 @@ import { Breadcrumbs, JsonLd, SectionHead } from "@/components/Blocks";
 import { EarlyAccess } from "@/components/EarlyAccess";
 import { Icon } from "@/components/Icon";
 import { ScreenPair, shots } from "@/components/Shots";
-import { catalogue, comingNext, faqs, flow, goodshaul, money, offline, roles, setup, stock } from "@/lib/goodshaul";
-import { absoluteUrl, ogImage, site } from "@/lib/site";
+import { ai, aiPromise, alsoPlanned, faqs, flow, goodshaul, included, reasons, roles } from "@/lib/goodshaul";
+import { absoluteUrl, ogImage, pathTo, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: goodshaul.metaTitle },
@@ -18,21 +18,60 @@ export const metadata: Metadata = {
   },
 };
 
-function Checks({ items }: { items: string[] }) {
+const queue = ["Order A01-000124", "Delivery · stop 3 of 9", "Payment · cash"];
+
+/** Small looping illustration for each AI card. Decorative only. */
+function AiViz({ kind }: { kind: (typeof ai)[number]["key"] }) {
+  if (kind === "snap") {
+    return (
+      <div className="ai-viz ai-snap" aria-hidden="true">
+        <span className="ai-photo">
+          <img src={pathTo("/media/goodshaul/sample-can.webp")} alt="" width={213} height={520} loading="lazy" />
+          <i className="ai-scan" />
+        </span>
+        <span className="ai-fields">
+          {["Mango drink", "330 ml", "24 per box"].map((f, i) => (
+            <b key={f} style={{ ["--i" as string]: i }}>
+              <Icon name="check" size={12} /> {f}
+            </b>
+          ))}
+        </span>
+      </div>
+    );
+  }
+  if (kind === "drop") {
+    return (
+      <div className="ai-viz ai-drop" aria-hidden="true">
+        <span className="ai-sheet">
+          <em>price-list.pdf</em>
+          <i />
+          <i />
+          <i />
+        </span>
+        <span className="ai-arrow">
+          <Icon name="arrow" size={20} />
+        </span>
+        <span className="ai-fields">
+          {["£18.00", "£32.00", "£12.50"].map((f, i) => (
+            <b key={f} style={{ ["--i" as string]: i }}>
+              {f}
+            </b>
+          ))}
+        </span>
+      </div>
+    );
+  }
   return (
-    <ul className="list-check">
-      {items.map((t) => (
-        <li key={t}>
-          <Icon name="check" size={18} /> {t}
-        </li>
-      ))}
-    </ul>
+    <div className="ai-viz ai-show" aria-hidden="true">
+      <span className="ai-cutout">
+        <img src={pathTo("/media/goodshaul/sample-box.webp")} alt="" width={640} height={386} loading="lazy" />
+      </span>
+    </div>
   );
 }
 
-const queue = ["Order A01-000124", "Delivery · stop 3 of 9", "Payment · cash"];
-
 export default function GoodsHaulPage() {
+  const v = goodshaul.video;
   return (
     <>
       {/* HERO */}
@@ -40,7 +79,7 @@ export default function GoodsHaulPage() {
         <div className="container gh-hero-grid">
           <div className="hero-copy">
             <span className="pill rise d1">
-              <i className="dot pulse" /> Early access · Wholesale and van-sales distribution
+              <i className="dot pulse" /> Early access · For wholesalers and distributors
             </span>
             <h1 className="h1-page gh-h1 rise d2">{goodshaul.heroTitle}</h1>
             <p className="lead rise d3">{goodshaul.heroLead}</p>
@@ -48,8 +87,8 @@ export default function GoodsHaulPage() {
               <a href="#early-access" className="btn btn-primary btn-lg pulse">
                 Join early access <Icon name="arrow" size={18} />
               </a>
-              <a href="#how-it-works" className="btn btn-ghost btn-lg">
-                See how it works
+              <a href="#watch" className="btn btn-ghost btn-lg">
+                Watch 40 seconds
               </a>
             </div>
           </div>
@@ -60,8 +99,8 @@ export default function GoodsHaulPage() {
         </div>
       </section>
 
-      {/* FLOW */}
-      <section className="section section-deep" id="how-it-works">
+      {/* THREE REASONS */}
+      <section className="section section-deep gh-reasons-wrap">
         <div className="container">
           <Breadcrumbs
             items={[
@@ -69,43 +108,89 @@ export default function GoodsHaulPage() {
               { name: goodshaul.name, href: goodshaul.path },
             ]}
           />
-          <div className="gh-gap" />
-          <SectionHead
-            tag="order-to-cash"
-            title="One order,"
-            shine="followed all the way."
-            lead="The same order moves from the rep's phone to the office, onto the van and into the customer's account. Nobody keys it in twice."
-          />
+          <h2 className="sr-only">Why {goodshaul.name}</h2>
+          <div className="gh-reasons">
+            {reasons.map((r, i) => (
+              <div key={r.big} className="gh-reason reveal" style={{ ["--d" as string]: `${i * 90}ms` }}>
+                <h3 className="gh-reason-title">
+                  {r.big} <span className="accent">{r.title}</span>
+                </h3>
+                <p>{r.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* VIDEO */}
+      <section className="section" id="watch">
+        <div className="container gh-narrow gh-center">
+          <SectionHead tag="watch" title="See it in" shine="40 seconds." />
+          <div className="gh-video reveal">
+            <video controls preload="none" playsInline poster={pathTo(v.poster)}>
+              <source src={pathTo(v.src)} type="video/mp4" />
+              Your browser cannot play this video.
+            </video>
+          </div>
+          <p className="gh-note">Concept preview with sample data. No sound.</p>
+        </div>
+      </section>
+
+      {/* AI */}
+      <section className="section section-deep gh-ai" id="ai">
+        <div className="cta-glow" aria-hidden="true" />
+        <div className="container">
+          <div className="gh-ai-head reveal">
+            <span className="gh-badge">
+              <i className="dot pulse" /> AI · In development
+            </span>
+            <h2 className="h2">
+              AI does the typing. <span className="shine">You stay in charge.</span>
+            </h2>
+          </div>
+          <div className="grid-3">
+            {ai.map((a, i) => (
+              <div key={a.key} className="card gh-ai-card reveal" style={{ ["--d" as string]: `${i * 90}ms` }}>
+                <AiViz kind={a.key} />
+                <h3 className="gh-ai-verb">{a.verb}</h3>
+                <p>{a.text}</p>
+              </div>
+            ))}
+          </div>
+          <p className="gh-ai-promise reveal">
+            <Icon name="qa" size={22} /> {aiPromise}
+          </p>
+        </div>
+      </section>
+
+      {/* FLOW */}
+      <section className="section" id="how-it-works">
+        <div className="container">
+          <SectionHead tag="how-it-works" title="One order," shine="five steps." />
           <ol className="gh-flow reveal">
             {flow.map((s, i) => (
               <li key={s.title} className="gh-step" style={{ ["--i" as string]: i }}>
                 <span className="gh-step-n" aria-hidden="true">
                   {i + 1}
                 </span>
+                <h3 className="h3 h3-lg">{s.title}</h3>
                 <span className="kicker">{s.who}</span>
-                <h3 className="h3">{s.title}</h3>
-                <p>{s.text}</p>
               </li>
             ))}
           </ol>
-        </div>
-      </section>
 
-      {/* ROLES */}
-      <section className="section" id="who-uses-it">
-        <div className="container">
-          <SectionHead
-            tag="roles"
-            title="Built for the people"
-            shine="doing the work."
-            lead="One phone app for reps and drivers, one back office in the browser. Each person sees only what their job needs."
-          />
-          <div className="grid-3">
+          <div className="grid-3 gh-roles">
             {roles.map((r, i) => (
               <div key={r.title} className="card reveal" style={{ ["--d" as string]: `${i * 80}ms` }}>
                 <span className="kicker">{r.tag}</span>
                 <h3 className="h3 h3-lg">{r.title}</h3>
-                <Checks items={r.points} />
+                <ul className="list-check">
+                  {r.points.map((t) => (
+                    <li key={t}>
+                      <Icon name="check" size={18} /> {t}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
@@ -114,122 +199,59 @@ export default function GoodsHaulPage() {
 
       {/* OFFLINE */}
       <section className="section section-deep" id="offline">
-        <div className="container">
-          <SectionHead
-            tag="offline-first"
-            title="Keeps working where"
-            shine="the signal doesn't."
-            lead="Cellars, cold stores and country roads are part of the job. The phone app saves the work locally first, so the day carries on without a connection."
-          />
-          <div className="gh-split">
-            <div className="gh-sync reveal" aria-hidden="true">
-              <div className="gh-sync-head">
-                <span className="gh-sync-state">
-                  <b className="off">No signal</b>
-                  <b className="on">Back online</b>
+        <div className="container gh-split">
+          <div className="gh-ea-copy reveal">
+            <span className="tag">&lt;offline-first /&gt;</span>
+            <h2 className="h2">
+              Works in the cellar. <span className="shine">Syncs on the road.</span>
+            </h2>
+            <p className="lead">Nothing lost if the app closes. Nothing sent twice.</p>
+          </div>
+          <div className="gh-sync reveal" aria-hidden="true">
+            <div className="gh-sync-head">
+              <span className="gh-sync-state">
+                <b className="off">No signal</b>
+                <b className="on">Back online</b>
+              </span>
+              <span className="kicker">upload queue</span>
+            </div>
+            {queue.map((q, i) => (
+              <div key={q} className="gh-sync-row" style={{ ["--i" as string]: i }}>
+                <span>{q}</span>
+                <span className="gh-chip">
+                  <b className="off">Saved on phone</b>
+                  <b className="on">
+                    <Icon name="check" size={12} /> Sent
+                  </b>
                 </span>
-                <span className="kicker">upload queue</span>
-              </div>
-              {queue.map((q, i) => (
-                <div key={q} className="gh-sync-row" style={{ ["--i" as string]: i }}>
-                  <span>{q}</span>
-                  <span className="gh-chip">
-                    <b className="off">Saved on phone</b>
-                    <b className="on">
-                      <Icon name="check" size={12} /> Sent
-                    </b>
-                  </span>
-                </div>
-              ))}
-            </div>
-            <div className="gh-points">
-              {offline.map((o, i) => (
-                <div key={o.title} className="gh-point reveal" style={{ ["--d" as string]: `${i * 70}ms` }}>
-                  <h3 className="h3">{o.title}</h3>
-                  <p>{o.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* STOCK AND CATALOGUE */}
-      <section className="section" id="stock">
-        <div className="container">
-          <SectionHead
-            tag="stock"
-            title="Know what you"
-            shine="can promise."
-            lead="Stock is a ledger of movements, so the figure on screen is always the sum of what actually happened."
-          />
-          <div className="gh-split gh-split-media">
-            <div className="reveal">
-              <ScreenPair desktop={shots.stockDesktop} phone={shots.stockPhone} flip />
-              <p className="gh-note">Design preview with sample data.</p>
-            </div>
-            <div className="stack-gap gh-tight">
-              <div className="reveal">
-                <h3 className="h3 h3-lg">Stock levels</h3>
-                <Checks items={stock} />
-              </div>
-              <div className="reveal">
-                <h3 className="h3 h3-lg">Photos and catalogue</h3>
-                <Checks items={catalogue} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* MONEY */}
-      <section className="section section-deep" id="money">
-        <div className="container">
-          <SectionHead
-            tag="money"
-            title="Cash, cheques and credit,"
-            shine="under control."
-            lead="Deliveries on account only work if you know who owes what. GoodsHaul keeps that picture current."
-          />
-          <div className="grid-3">
-            {money.map((m, i) => (
-              <div key={m.title} className="card reveal" style={{ ["--d" as string]: `${i * 60}ms` }}>
-                <h3 className="h3">{m.title}</h3>
-                <p>{m.text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* SETUP AND ROADMAP */}
-      <section className="section" id="setup">
-        <div className="container">
-          <SectionHead
-            tag="setup"
-            title="Set up for"
-            shine="your business."
-            lead="Configured per company rather than hard-wired to one country or one way of working."
-          />
-          <div className="gh-split">
-            <div className="gh-points gh-points-1">
-              {setup.map((s, i) => (
-                <div key={s.title} className="gh-point reveal" style={{ ["--d" as string]: `${i * 70}ms` }}>
-                  <h3 className="h3">{s.title}</h3>
-                  <p>{s.text}</p>
-                </div>
+      {/* INCLUDED */}
+      <section className="section" id="included">
+        <div className="container gh-split gh-split-media">
+          <div className="reveal">
+            <ScreenPair desktop={shots.stockDesktop} phone={shots.stockPhone} flip />
+            <p className="gh-note">Design preview with sample data.</p>
+          </div>
+          <div className="gh-ea-copy reveal">
+            <span className="tag">&lt;included /&gt;</span>
+            <h2 className="h2">
+              Already <span className="shine">in the box.</span>
+            </h2>
+            <ul className="chips">
+              {included.map((c) => (
+                <li key={c} className="chip">
+                  {c}
+                </li>
               ))}
-            </div>
-            <div className="card gh-next reveal">
-              <span className="kicker">Coming next</span>
-              <h3 className="h3 h3-lg">On the roadmap</h3>
-              <p>Not in the product yet. Early-access customers help decide the order.</p>
-              <ul className="gh-next-list">
-                {comingNext.map((c) => (
-                  <li key={c}>{c}</li>
-                ))}
-              </ul>
-            </div>
+            </ul>
+            <p className="gh-planned">
+              <span className="kicker">Next up</span> {alsoPlanned.join(" · ")}
+            </p>
           </div>
         </div>
       </section>
@@ -258,10 +280,7 @@ export default function GoodsHaulPage() {
             <h2 className="h2">
               Run your next delivery day on <span className="shine">{goodshaul.name}.</span>
             </h2>
-            <p className="lead">
-              We&apos;re opening {goodshaul.name} to a small number of wholesalers and distributors. Tell us how you take
-              orders and deliver today, and we&apos;ll show you the product with your kind of day in mind.
-            </p>
+            <p className="lead">Open to a small number of wholesalers and distributors. Tell us how you work today.</p>
           </div>
           <div className="reveal" style={{ ["--d" as string]: "90ms" }}>
             <EarlyAccess />
@@ -281,7 +300,20 @@ export default function GoodsHaulPage() {
           applicationSubCategory: "Wholesale distribution and van sales software",
           operatingSystem: "Web, iOS, Android",
           image: absoluteUrl(shots.orderDesktop.src),
-          featureList: [...roles.flatMap((r) => r.points), ...stock, ...money.map((m) => `${m.title}: ${m.text}`)],
+          featureList: [...roles.flatMap((r) => r.points), ...included],
+          publisher: { "@type": "Organization", "@id": `${site.url}/#organization`, name: site.name },
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          name: `${goodshaul.name} in 40 seconds`,
+          description: goodshaul.metaDescription,
+          thumbnailUrl: absoluteUrl(v.poster),
+          contentUrl: absoluteUrl(v.src),
+          uploadDate: v.published,
+          duration: v.duration,
           publisher: { "@type": "Organization", "@id": `${site.url}/#organization`, name: site.name },
         }}
       />
