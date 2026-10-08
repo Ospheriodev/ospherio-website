@@ -71,7 +71,7 @@
 
 ## Content placeholders
 Values still to be filled in, all marked in the source and safe to search for:
-- `site.ts`: booking link, social links, and `formAccessKey` for the contact form.
+- `site.ts`: booking link and social links. (`formAccessKey` is set; the forms are live.)
 - Assets: official logo SVG (`public/og.png` is generated from the current brand).
 
 ## Working style
