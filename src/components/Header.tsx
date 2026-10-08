@@ -8,7 +8,8 @@ import { useEffect, useState } from "react";
 import { Icon } from "./Icon";
 import { contactHref } from "@/lib/site";
 
-const nav = [
+const nav: { href: string; label: string; isNew?: boolean }[] = [
+  { href: "/goodshaul/", label: "GoodsHaul", isNew: true },
   { href: "/services/", label: "Services" },
   { href: "/work/", label: "Work" },
   { href: "/#process", label: "Process" },
@@ -41,7 +42,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className={pathname === item.href ? "is-active" : undefined}
+              className={[pathname === item.href && "is-active", item.isNew && "nav-new"].filter(Boolean).join(" ") || undefined}
             >
               {item.label}
             </Link>

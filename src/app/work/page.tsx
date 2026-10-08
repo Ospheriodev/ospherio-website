@@ -6,7 +6,7 @@ import { projects } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "Our Work — Software Projects & Case Studies",
   description:
-    "Software products built by Ospherio, including the Goodshaul AI warehouse solution and the VoiceLedger voice-based ledger app.",
+    "Software products built by Ospherio, including GoodsHaul for wholesale distributors and the VoiceLedger voice-based ledger app.",
   alternates: { canonical: "/work/" },
 };
 
@@ -16,7 +16,7 @@ export default function WorkPage() {
       <PageHero
         tag="Work"
         title="Products we're building."
-        lead="A look at the software we design, build and run — from inventory systems to voice-powered apps and AI reporting."
+        lead="A look at the software we design, build and run — from distribution software to voice-powered apps and AI reporting."
       />
       <section className="section section-deep">
         <div className="container stack-gap">

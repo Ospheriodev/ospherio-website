@@ -10,6 +10,12 @@ export type Project = {
   features: string[];
   services: string[]; // service slugs
   visual: Visual;
+  /** A product with its own page outside /work/. When set, listings link here
+   *  and no /work/[slug]/ page is generated (the old URL 301s in _redirects). */
+  href?: string;
+  /** A screenshot served from public/, shown instead of the CSS motif. */
+  image?: string;
+  imageAlt?: string;
   /** Optional demo clip, served from public/. Needs a poster: without one the
    *  player is a black box until it loads. */
   video?: string;
@@ -23,21 +29,24 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "goodshaul",
-    name: "Goodshaul",
-    category: "AI · Warehouse · ERP",
+    name: "GoodsHaul",
+    category: "Product · Wholesale distribution · Early access",
     summary:
-      "A complete AI warehouse solution — scan, track and control stock across locations, with the grip of a full ERP and none of its weight.",
+      "Order-to-cash for wholesale distributors: reps take orders on the phone, the office confirms and invoices, drivers deliver and collect payment. It keeps working with no signal.",
     metaDescription:
-      "Goodshaul is a complete AI warehouse solution by Ospherio: barcode scanning, live stock and location tracking, and AI-assisted reporting on stock movement.",
+      "GoodsHaul is van-sales and distribution software by Ospherio: offline order taking, delivery runs, invoicing, payments at the drop, credit control and stock.",
     overview:
-      "Goodshaul runs a warehouse end to end. Barcode scanning covers the day-to-day movements — goods in, goods out, transfers between locations — so stock levels stay accurate without anyone keeping a parallel spreadsheet. On top of that history, AI turns raw movement data into reporting the team can act on. It is built for businesses that need the control of a full ERP without the cost and complexity of rolling one out.",
+      "GoodsHaul follows an order from the rep's phone to the office, onto the van and into the customer's account. It has its own page with the full picture.",
     features: [
-      "Barcode scanning for stock in, stock out and transfers",
-      "Live stock and location tracking across warehouses",
-      "AI-assisted reporting over your stock movement history",
+      "Offline order taking and deliveries on the phone",
+      "Invoices, delivery runs, payments and cheques in one back office",
+      "Credit limits, statements and stock that stay current",
     ],
-    services: ["erp-inventory-software", "web-app-development", "ai-automation", "ui-ux-design"],
+    services: ["erp-inventory-software", "web-app-development", "mobile-app-development", "ui-ux-design"],
     visual: "barcode",
+    href: "/goodshaul/",
+    image: "/media/goodshaul/order-desktop.webp",
+    imageAlt: "GoodsHaul order screen with the order total, a short-stock warning and the customer's credit position",
   },
   {
     slug: "voice-ledger",
@@ -100,3 +109,9 @@ export const projects: Project[] = [
 ];
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
+
+/** Where a listing should send people for this project. */
+export const projectHref = (p: Project) => p.href ?? `/work/${p.slug}/`;
+
+/** Projects that get a generated /work/[slug]/ page. */
+export const workPages = projects.filter((p) => !p.href);

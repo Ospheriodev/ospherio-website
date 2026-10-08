@@ -1,6 +1,10 @@
 # Cloudflare Pages redirects. Unlike GitHub Pages these are real 301s, so the
 # renamed projects no longer need meta-refresh stub pages.
-/work/barcodex      /work/goodshaul/     301
-/work/barcodex/     /work/goodshaul/     301
+# GoodsHaul has its own product page; the old project URLs point straight at it
+# (no chain through /work/goodshaul/).
+/work/goodshaul     /goodshaul/          301
+/work/goodshaul/    /goodshaul/          301
+/work/barcodex      /goodshaul/          301
+/work/barcodex/     /goodshaul/          301
 /work/voice-khata   /work/voice-ledger/  301
 /work/voice-khata/  /work/voice-ledger/  301

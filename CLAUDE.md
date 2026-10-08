@@ -4,7 +4,9 @@
 - Ospherio is a software development and IT services company, presented as an all-in-one tech partner.
 - Don't add team, headcount or "small team" content to the site.
 - Target market for SEO: **global / remote clients** (US, UK, EU outsourcing).
-- Portfolio projects: Goodshaul (AI warehouse solution), VoiceLedger (voice-based ledger app), ReportingGPT (RAG reporting), Bakerify (bakery e-commerce).
+- Our own product: **GoodsHaul**, order-to-cash software for wholesale distributors (offline order taking,
+  delivery runs, invoicing, payments, credit control, stock). It is in early access and has its own page.
+- Portfolio projects: VoiceLedger (voice-based ledger app), ReportingGPT (RAG reporting), Bakerify (bakery e-commerce).
 
 ## Brand
 - Logo: `< ı o >` code-bracket icon (white brackets and bar, cyan ring) + wordmark "Ospherıo" with a dotless ı and a cyan final "o", on dark navy.
@@ -41,19 +43,27 @@
 - `src/lib/process.ts`: the four "How we work" steps (`components/Process.tsx`).
 - `src/components/WhyUs.tsx`: the "all-in-one tech partner" section (home and About).
 - `src/lib/services.ts`: the 8 services (slug, copy, deliverables, stack, FAQs).
-- `src/lib/projects.ts`: the 4 projects. `components/Showcase.tsx` renders them as
+- `src/lib/goodshaul.ts`: all copy for the GoodsHaul product page (`src/app/goodshaul/page.tsx`).
+  Keep it short and scannable: one idea per line. Only describe what is built; the AI features
+  (`ai`) and `alsoPlanned` are in development and must stay labelled that way on the page. No prices,
+  customer names or unpublished figures. The 40-second clip (`public/media/goodshaul/goodshaul-demo.mp4`)
+  is a concept preview recorded from the design prototype with sample data, and is captioned as such. `components/Shots.tsx` holds the framed screens (`public/media/goodshaul/`),
+  which are design previews with sample data and are captioned as such. `components/EarlyAccess.tsx`
+  is the early-access request: an email card until `site.formAccessKey` is set, then a form.
+- `src/lib/projects.ts`: the 4 projects. A project with `href` (GoodsHaul) links to its own page and
+  gets no `/work/[slug]/` page; its old URL 301s in `public/_redirects`. `components/Showcase.tsx` renders them as
   alternating rows on the home page and `/work/`; `ProjectMedia` in `Blocks.tsx` shows a
   project's demo clip when it has one, otherwise the CSS motif from `ProjectVisual`.
 - `public/media/`: demo clips and their posters. A clip needs `videoPoster`, plus
   `videoDuration`/`videoPublished` for the VideoObject JSON-LD; it is `preload="none"`
   so it never costs a page load.
 - Renamed projects keep their old URL alive with a 301 in `public/_redirects`.
-- Pages: `/`, `/services/`, `/services/[slug]/`, `/work/`, `/work/[slug]/`, `/about/`, `/contact/`, 404, `sitemap.ts`, `robots.ts`.
+- Pages: `/`, `/goodshaul/`, `/services/`, `/services/[slug]/`, `/work/`, `/work/[slug]/`, `/about/`, `/contact/`, 404, `sitemap.ts`, `robots.ts`.
 
 ## SEO rules (keep these)
 - Every page: one H1, unique title + meta description, canonical URL.
 - JSON-LD: Organization + WebSite (layout), Service + FAQPage (service pages), BreadcrumbList,
-  CreativeWork (projects), VideoObject (projects with a demo clip).
+  CreativeWork (projects), VideoObject (projects with a demo clip), SoftwareApplication + FAQPage (GoodsHaul).
 - A page that declares its own `openGraph` REPLACES the root one rather than merging, so every
   such page must spread in `ogImage` from `site.ts` or it ships with no share image.
 - Project pages whose text still contains `[bracketed placeholders]` are auto-`noindex` and left out of the sitemap.

@@ -32,6 +32,7 @@ export function Footer() {
         <div>
           <h2 className="footer-title">Company</h2>
           <ul>
+            <li><Link href="/goodshaul/">GoodsHaul</Link></li>
             <li><Link href="/work/">Work</Link></li>
             <li><Link href="/about/">About</Link></li>
             <li><Link href="/contact/">Contact</Link></li>

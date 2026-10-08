@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Icon } from "./Icon";
 import { ProjectMedia } from "./Blocks";
-import type { Project } from "@/lib/projects";
+import { projectHref, type Project } from "@/lib/projects";
 
 /**
  * Products as full-width alternating rows rather than a card grid: each one
@@ -23,7 +23,7 @@ export function Showcase({ items, level: H = "h3" }: { items: Project[]; level?:
           <div className="sc-body">
             <span className="kicker">{p.category}</span>
             <H className="sc-title">
-              <Link href={`/work/${p.slug}/`} className="sc-link">
+              <Link href={projectHref(p)} className="sc-link">
                 {p.name}
               </Link>
             </H>
@@ -37,7 +37,7 @@ export function Showcase({ items, level: H = "h3" }: { items: Project[]; level?:
               ))}
             </ul>
             <span className="sc-cta">
-              {p.video ? "Watch the demo" : "View project"} <Icon name="arrow" size={16} />
+              {p.video ? "Watch the demo" : p.href ? "See the product" : "View project"} <Icon name="arrow" size={16} />
             </span>
           </div>
         </article>
